@@ -19,9 +19,6 @@ export const registerSettings = function() {
     default: false,
     type: Boolean,
   });
-
-  let menu = new helpMenu;
-  menu.render(true);
 }
 
 export class helpMenu extends FormApplication {
