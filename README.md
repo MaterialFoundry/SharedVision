@@ -25,10 +25,10 @@ You can enable or disable shared vision using a control button in the 'Basic Con
 <h2>Trigger Happy</h2>
 <a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> can add triggers to Foundry, for example when a token moves onto another token, or when it is clicked.
 Shared Vision can be triggered through Trigger Happy on a 'click' or 'move' trigger.<br>
-You set this up like you would any other trigger, and you add 'shareVision=true', 'shareVision=false' or 'shareVision=toggle' to the '@Trigger' pseudo link.<br>
+You set this up like you would any other trigger, and you add `shareVision=true`, `shareVision=false` or `shareVision=toggle` to the `@Trigger` pseudo link.<br>
 <br>
 <b>Example:</b><br>
-To enable shared vision when a token moves unto another token called 'test', you use '@Token[test] @Trigger[move shareVision=true]'<br>
+To enable shared vision when a token moves unto another token called 'test', you use `@Token[test] @Trigger[move shareVision=true]`<br>
 <br>
 For more info on how to use Trigger Happy, please read the <a href="https://github.com/League-of-Foundry-Developers/fvtt-module-trigger-happy/blob/master/README.md">documentation</a>.
 
@@ -46,16 +46,16 @@ Selecting and then right-clicking this tile will open the HUD which will show th
 <h2>Triggering using hooks</h2>
 If you want to enable or disable the shared vision using macros or a different module, you can call the following hooks:<br>
 <br>
-<b>Enable:</b> Hooks.call("setShareVision",{enable:true})<br>
-<b>Disable:</b> Hooks.call("setShareVision",{enable:false})<br>
-<b>Toggle:</b> Hooks.call("setShareVision",{enable:'toggle'})<br>
+<b>Enable:</b> `Hooks.call("setShareVision",{enable:true})`<br>
+<b>Disable:</b> `Hooks.call("setShareVision",{enable:false})`<br>
+<b>Toggle:</b> `Hooks.call("setShareVision",{enable:'toggle'})`<br>
 
 <h1>Module Compatibility</h1>
-Shared Vision overrides the default 'Token.prototype._isVisionSource' method while vision sharing is enabled. This could cause conflicts with other modules.<br>
+Shared Vision overrides the default `Token.prototype._isVisionSource` method while vision sharing is enabled. This could cause conflicts with other modules.<br>
 For this reason, <a href="https://foundryvtt.com/packages/lib-wrapper/">libWrapper</a> was implemented.
 
 <h1>Feedback</h1>
-If you have any suggestions or bugs to report, feel free to submit an <a href="">issue</a>, contact me on Discord (Cris#6864), or send me an email: cdeenen@outlook.com.
+If you have any suggestions or bugs to report, feel free to submit an <a href="https://github.com/CDeenen/SharedVision/issues">issue</a>, contact me on Discord (Cris#6864), or send me an email: cdeenen@outlook.com.
 
 <h1>Credits</h1>
 <b>Author:</b> Cristian Deenen (Cris#6864 on Discord)<br>

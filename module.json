@@ -1,7 +1,7 @@
 {
     "name": "SharedVision",
     "title": "Shared Vision",
-    "description": "",
+    "description": "Shared Vision provides an easy way to toggle vision sharing between multiple tokens by pressing a button or through external triggering",
     "version": "0.1.0",
     "author": "CDeenen",
     "esmodules": ["./sharedvision.js"],
@@ -15,7 +15,7 @@
         "path": "lang/en.json"
       }
     ],
-    "url": "",
-    "manifest": "",
-    "download": ""
+    "url": "https://github.com/CDeenen/SharedVision",
+    "manifest": "https://raw.githubusercontent.com/CDeenen/SharedVision/master/module.json",
+    "download": "https://github.com/CDeenen/SharedVision/archive/master.zip"
   }
