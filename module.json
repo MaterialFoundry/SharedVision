@@ -1,0 +1,21 @@
+{
+    "name": "SharedVision",
+    "title": "Shared Vision",
+    "description": "",
+    "version": "0.1.0",
+    "author": "CDeenen",
+    "esmodules": ["./sharedvision.js"],
+    "socket": true,
+    "minimumCoreVersion": "0.7.6",
+    "compatibleCoreVersion": "0.7.9",
+    "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+    ],
+    "url": "",
+    "manifest": "",
+    "download": ""
+  }
