@@ -1,5 +1,5 @@
 <h1>Shared Vision</h1>
-Shared Vision is a module that provides an easy way to share vision between multiple tokens.<br>
+Shared Vision is a <a href="https://foundryvtt.com/">Foundry VTT</a> module that provides an easy way to share vision between multiple tokens.<br>
 The reasoning behind this is that, when dugeon delving, the player in the back of the marching order will miss out on all the awesome stuff that's happening at the front.<br>
 The GM might have prepared an awesome cut-scene, with vivid descriptions, but the wizard at the back isn't in the same room yet as the fighter in the front, so the wizard's player is missing out on all the action!<br>
 <br>
@@ -8,6 +8,8 @@ Shared Vision allows the GM to press a button, and the vision between specified 
 Besides pressing a button, Shared Vision can also be triggered using <a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> and <a href="https://foundryvtt.com/packages/hey-wait/">Hey, Wait!</a>
 
 <h1>Instructions</h1>
+All these instructions can also be accessed from within Foundry by going to the module settings ('Game Settings' => 'Configure Settings' => 'Module Settings') and pressing the 'Help' button in the 'Shared Vision' section.
+
 <h2>Actor Configuration</h2>
 To configure which tokens should share their vision when share vision is enabled, you must go to the 'Permission Configuration' for the actor of that token.<br>
 You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Configure Permissions'.<br>
@@ -53,7 +55,9 @@ If you want to enable or disable the shared vision using macros or a different m
 
 <h1>Module Compatibility</h1>
 Shared Vision overrides the default 'Token.prototype._isVisionSource' method while vision sharing is enabled. This could cause conflicts with other modules.<br>
-For this reason, <a href="https://foundryvtt.com/packages/lib-wrapper/">libWrapper</a> was implemented.
+For this reason, <a href="https://foundryvtt.com/packages/lib-wrapper/">libWrapper</a> was implemented.<br>
+<br>
+<a href="https://foundryvtt.com/packages/midi-qol/">Midi QOL</a> has the 'Players control owned hidden tokens' setting that could cause issues. By default it should work fine, but if you have libWrapper installed and Midi QOL is set to a higher priority than Shared Vision, Shared Vision will no longer work.
 
 <h1>Feedback</h1>
 If you have any suggestions or bugs to report, feel free to submit an <a href="https://github.com/CDeenen/SharedVision/issues">issue</a>, contact me on Discord (Cris#6864), or send me an email: cdeenen@outlook.com.

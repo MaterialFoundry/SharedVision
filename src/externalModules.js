@@ -54,9 +54,8 @@ export function heyWait_onTileHud(tileHud,html){
             <i class="fas fa-eye" title="${title}">
         </div>
     `;
-    console.log(form);
+    
     html.find('.visibility').before(form);
-    console.log(html[0].innerHTML);
     html.find('.sharedVisionEnabled').click(async () => {
         tile.data.flags['sharedVision'] = {enabled:!enabled};
         tileHud.render();

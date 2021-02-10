@@ -12,8 +12,14 @@ export const registerSettings = function() {
     restricted: true
   });
 
-  
   game.settings.register(MODULE.moduleName,'enable', {
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register(MODULE.moduleName,'midiQOL-dialog', {
     scope: "world",
     config: false,
     default: false,

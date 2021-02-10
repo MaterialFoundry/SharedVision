@@ -4,8 +4,6 @@ import * as EXTERNAL from "./src/externalModules.js";
 
 export const moduleName = "SharedVision";
 
-//CONFIG.debug.hooks = true;
-
 Hooks.once('init', function()                                         { MISC.onInit() });
 Hooks.on('getSceneControlButtons', (controls)                     =>  { CBUTTONS.pushControlButtons(controls) });  //Register control button
 Hooks.on('renderPermissionControl', (permissionControl,html,data) =>  { MISC.onRenderPermissionControl(permissionControl,html) });
