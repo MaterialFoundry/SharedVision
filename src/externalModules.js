@@ -14,7 +14,7 @@ export function setHeyWaitActive(en){
 }
 
 export function heyWait_onTrigger(sceneId,tileId) {
-    if (game.user.isGM == false && heyWaitActive == false) return;
+    if (game.user.isGM == false || heyWaitActive == false) return;
 
     const tiles = canvas.tiles.children[0].children;
     let tile;
@@ -36,7 +36,7 @@ export function heyWait_onTrigger(sceneId,tileId) {
 }
 
 export function heyWait_onTileHud(tileHud,html){
-    if (game.user.isGM == false && heyWaitActive == false) return;
+    if (game.user.isGM == false || heyWaitActive == false) return;
     const tile = tileHud.object;
 
     if (!tile.data?.flags?.['hey-wait']?.enabled) {
