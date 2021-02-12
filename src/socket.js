@@ -6,7 +6,7 @@ import * as EXTERNAL from "./externalModules.js";
  */
 export function socketInit(){
     game.socket.on(`module.SharedVision`, (payload) =>{
-        if (game.user.isGM == false && payload.msgType == "enable") MISC.setShareVision(payload.enable);
+        if (game.user.isGM == false && payload.msgType == "enable") MISC.initializeSources();
         else if (game.user.isGM && payload.msgType == "userSet") MISC.onSetShareVision({enable:payload.enable});
     }); 
     

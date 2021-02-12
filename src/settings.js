@@ -1,4 +1,5 @@
 import * as MODULE from "../sharedvision.js";
+import * as MISC from "./misc.js";
 
 /*
  * Initialize all settings
@@ -11,6 +12,47 @@ export const registerSettings = function() {
     type: helpMenu,
     restricted: true
   });
+
+  game.settings.register(MODULE.moduleName,'none', {
+    name: "SharedVision.Sett.None.Name",
+    hint: "SharedVision.Sett.None.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: x => MISC.initializeSources()
+  });
+
+  game.settings.register(MODULE.moduleName,'limited', {
+    name: "SharedVision.Sett.Limited.Name",
+    hint: "SharedVision.Sett.Limited.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: x => MISC.initializeSources()
+  });
+
+  game.settings.register(MODULE.moduleName,'observer', {
+    name: "SharedVision.Sett.Observer.Name",
+    hint: "SharedVision.Sett.Observer.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: x => MISC.initializeSources()
+  });
+
+  game.settings.register(MODULE.moduleName,'owner', {
+    name: "SharedVision.Sett.Owner.Name",
+    hint: "SharedVision.Sett.Owner.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: x => MISC.initializeSources()
+  });
+
 
   game.settings.register(MODULE.moduleName,'enable', {
     scope: "world",

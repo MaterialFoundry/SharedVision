@@ -1,53 +1,69 @@
 <h1>Shared Vision</h1>
 Shared Vision is a <a href="https://foundryvtt.com/">Foundry VTT</a> module that provides an easy way to share vision between multiple tokens.<br>
-The reasoning behind this is that, when dugeon delving, the player in the back of the marching order will miss out on all the awesome stuff that's happening at the front.<br>
-The GM might have prepared an awesome cut-scene, with vivid descriptions, but the wizard at the back isn't in the same room yet as the fighter in the front, so the wizard's player is missing out on all the action!<br>
+By default, you can do this in Foundry by giving every player observer permissions, but in that case tokens will only share vision if the player has no tokens selected.<br>
+Shared Vision allows you to configure actors so they will always share their vision, or only when you press a control button, or when it's triggered by <a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> or <a href="https://foundryvtt.com/packages/hey-wait/">Hey, Wait!</a><br>
 <br>
-Shared Vision allows the GM to press a button, and the vision between specified tokens will be shared between all players, so everyone gets to enjoy the cool stuff at the front.<br>
+Besides sharing the vision of all players tokens with all players, you could specify with what player the actor should share its vision. This could be useful if a player controls multiple tokens, such as familiars.<br>
 <br>
-Besides pressing a button, Shared Vision can also be triggered using <a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> and <a href="https://foundryvtt.com/packages/hey-wait/">Hey, Wait!</a>
+A control button allows you to easily toggle vision sharing for all players for specified actors (Global Shared Vision). The reasoning behind this is that, when dugeon delving, the player in the back of the marching order will miss out on all the awesome stuff that's happening at the front. The GM might have prepared an awesome cut-scene, with vivid descriptions, but the wizard at the back isn't in the same room yet as the fighter in the front, so the wizard's player is missing out on all the action!<br>
+Shared Vision allows the GM to press a button, and the vision between specified tokens will be shared with all players, so everyone gets to enjoy the cool stuff at the front.<br>
 
 <h1>Instructions</h1>
-All these instructions can also be accessed from within Foundry by going to the module settings ('Game Settings' => 'Configure Settings' => 'Module Settings') and pressing the 'Help' button in the 'Shared Vision' section.
+
+<h2>Module Settings</h2>
+You can access the module settings by pressing 'Game Settings' on the sidebar, clicking 'Module Settings' and searching for the 'Shared Vision' section.<br>
+At the top you'll find a help button that will open a screen with the same instructions as this readme file.<br>
+<br>
+Besides the help button, you can enable always-on (also if you've not selected the token or if the token is invisible) vision sharing for each actor permission level. 
+Simply check the box for the permission level you want.<br>
+For example, if you always want to share vision with all tokens with permission level 'Observer', just check the box next to 'Actor Permission: Observer'.
+
+![moduleSettings](https://github.com/CDeenen/SharedVision/blob/master/img/examples/ModuleSettings.png)
 
 <h2>Actor Configuration</h2>
-To configure which tokens should share their vision when share vision is enabled, you must go to the 'Permission Configuration' for the actor of that token.<br>
-You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Configure Permissions'.<br>
+To configure which tokens should share their vision, you must go to the 'Permission Configuration' for the actor of that token.<br>
+You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Configure Permissions'.
+The 'Permission Configuration' screen will now open, and there will be some new options.<br>
 <br>
-The 'Permission Configuration' screen will now open, and at the bottom there is a checkbox named 'Enable Shared Vision'. By checking this checkbox, all tokens of this actor will share their vision.<br>
+The 'Global Shared Vision' checkbox determines if this actor should share its vision if the 'Global Shared Vision' control button is enabled.<br>
+Below that you'll find a checkbox next to each (non GM) user's name, checking these boxes will always share that actors vision with the specific users, 
+regardless of whether 'Global Shared Vision' is enabled.<br>
+<br>
 Players do not need to have any permissions in order for the tokens to share their view. This will work if the token is an NPC or even if it is invisible.<br>
-You could, for example, add invisible tokens to a scene where you want everyone to be able to see everything.
+You could, for example, add invisible tokens to a spot where you want everyone to be able to see.
 
 ![permissionConfiguration](https://github.com/CDeenen/SharedVision/blob/master/img/examples/PermissionConfiguration.png)
 
 <h2>Control Button</h2>
-You can enable or disable shared vision using a control button in the 'Basic Controls'. The control button has an eye icon, and is toggleable.
-
+You can enable or disable 'Global Shared Vision' using a control button in the 'Basic Controls'. This only shares the vision for actors where you've checked 'Global Shared Vision' in the actor's 'Permission Configuration' screen.<br>
+The control button has an eye icon, and is toggleable.
+        
 ![controlButtons](https://github.com/CDeenen/SharedVision/blob/master/img/examples/ControlButtons.png)
 
 <h2>Trigger Happy</h2>
 <a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> can add triggers to Foundry, for example when a token moves onto another token, or when it is clicked.
-Shared Vision can be triggered through Trigger Happy on a 'click' or 'move' trigger.<br>
+Global Shared Vision can be triggered through Trigger Happy on a 'click' or 'move' trigger.<br>
 You set this up like you would any other trigger, and you add 'shareVision=true', 'shareVision=false' or 'shareVision=toggle' to the '@Trigger' pseudo link.<br>
 <br>
 <b>Example:</b><br>
-To enable shared vision when a token moves unto another token called 'test', you use '@Token[test] @Trigger[move shareVision=true]'<br>
+To enable Global Shared Vision when a token moves unto another token called 'test', you use:<br>
+'@Token[test] @Trigger[move shareVision=true]'<br>
 <br>
 For more info on how to use Trigger Happy, please read the <a href="https://github.com/League-of-Foundry-Developers/fvtt-module-trigger-happy/blob/master/README.md">documentation</a>.
-
+        
 ![triggerHappy](https://github.com/CDeenen/SharedVision/blob/master/img/examples/TriggerHappy.png)
 
 <h2>Hey, Wait!</h2>
 <a href="https://foundryvtt.com/packages/hey-wait/">Hey, Wait!</a> allows you to place a tile on the scene, and when a token moves onto that tile, the game pauses and the scene shifts to the player's token.<br>
-You can set Shared Vision up to enable shared vision when Hey, Wait! is triggered.<br>
-
+You can set Shared Vision up to enable Global Shared Vision when Hey, Wait! is triggered.<br>
+<br>
 Follow the <a href="https://github.com/1000nettles/hey-wait/blob/main/README.md">Hey, Wait! instructions</a> to create a 'Hey, Wait! tile'.<br>
-Selecting and then right-clicking this tile will open the HUD which will show the eye icon. Pressing this icon will enable vision sharing on the Hey, Wait! trigger.
+Selecting and then right-clicking this tile will open the HUD which will show the eye icon. Pressing this icon will enable Global Shared Vision on the Hey, Wait! trigger.
 
 ![heyWait](https://github.com/CDeenen/SharedVision/blob/master/img/examples/HeyWait.png)
 
 <h2>Triggering using hooks</h2>
-If you want to enable or disable the shared vision using macros or a different module, you can call the following hooks:<br>
+If you want to enable or disable the Global Shared Vision using macros or a different module, you can call the following hooks:<br>
 <br>
 <b>Enable:</b> Hooks.call("setShareVision",{enable:true})<br>
 <b>Disable:</b> Hooks.call("setShareVision",{enable:false})<br>

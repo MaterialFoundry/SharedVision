@@ -18,7 +18,7 @@ export function onInit(){
   EXTERNAL.setHeyWaitActive(heyWait != undefined && heyWait.active == true)
 
   midiQOL = game.modules.get('midi-qol')?.active;
-  if (midiQOL) midiQOL = game.settings.get('midi-qol','playerControlsInvisibleTokens');
+  if (midiQOL && game.settings.settings.has('midi-qol.playerControlsInvisibleTokens')) midiQOL = game.settings.get('midi-qol','playerControlsInvisibleTokens');
   
   if(game.modules.get('lib-wrapper')?.active) 
     libWrapper.register("SharedVision", "Token.prototype._isVisionSource", isVisionSourceOverride, "OVERRIDE");
@@ -30,11 +30,30 @@ function isVisionSourceOverride() {
   let result;
   if (midiQOL) result = isVisionSourceOverride_MidiQOLFix.call(this);
   else result = old_isVisionSource.call(this);
+  if (result) return true;
 
-  if (game.user.isGM == false && this.actor != null && game.settings.get(MODULE.moduleName,'enable')) {
-      const sharedVision = this.actor.data.flags.SharedVision ? this.actor.data.flags.SharedVision.enable : false;
-      if (sharedVision) return true;
-  }
+  let sharedVision = false;
+  if (game.user.isGM == false && this.actor != null) {
+    if (game.settings.get(MODULE.moduleName,'enable')) {
+      sharedVision = this.actor.data.flags.SharedVision ? this.actor.data.flags.SharedVision.enable : false; 
+    }
+    if (sharedVision == false) {
+      const userSetting = this.actor.data.flags.SharedVision.userSetting;
+      if (userSetting != undefined) {
+        for (let setting of userSetting)
+          if (setting.id == game.userId) {
+            sharedVision = setting.enable;
+            console.log(game.userId,userSetting,sharedVision)
+            break;
+          }
+      }
+    }
+    if (sharedVision == false) {
+      const permission = this.actor.data.permission?.[game.userId] ? this.actor.data.permission?.[game.userId] : this.actor.data.permission.default;
+      sharedVision = (permission==0 && game.settings.get(MODULE.moduleName,'none')) || (permission==1 && game.settings.get(MODULE.moduleName,'limited')) || (permission==2 && game.settings.get(MODULE.moduleName,'observer')) || (permission==3 && game.settings.get(MODULE.moduleName,'owner'));
+    }
+    return sharedVision;
+  } 
   return result;
 }
 
@@ -73,23 +92,46 @@ export async function onCanvasReady(){
     
     const enable = game.settings.get(MODULE.moduleName,'enable');
     if (game.user.isGM) SOCKET.emitSharedVision(enable);
-    else setShareVision(enable);
+    else initializeSources();
 }
 
 export function onRenderPermissionControl(permissionControl,html){
     const actor = permissionControl.object;
     if (actor.entity != "Actor") return;
-    let enable = actor.getFlag('SharedVision','enable');
-    if (enable == undefined) enable = false;
+    let btnEnable = actor.getFlag('SharedVision','enable');
+    if (btnEnable == undefined) btnEnable = false;
+    let userSetting = actor.getFlag('SharedVision','userSetting');
   
-    const contents = `
+    let contents = `
       <hr>
+      <p class="notes">${game.i18n.localize("SharedVision.ActorConf.Global.Note")}</p>
       <div class="form-group">
-        <label>Enable Shared Vision</label>
-        <input id="sharedVision" type="checkbox" name="sharedVision" data-dtype="Boolean" ${enable ? 'checked' : ''}>
+        <label>${game.i18n.localize("SharedVision.ActorConf.Global.Label")}</label>
+        <input id="sharedVisionButton" type="checkbox" name="sharedVisionButton" data-dtype="Boolean" ${btnEnable ? 'checked' : ''}>
       </div>
+      <hr>
+      <p class="notes">${game.i18n.localize("SharedVision.ActorConf.User.Note")}</p>
+      
     `
-  
+    const users = game.users.entities;
+    for (let user of users){
+      if (user.isGM) continue;
+      let enable = false;
+      if (userSetting != undefined) 
+        for (let setting of userSetting) 
+          if (user.id == setting.id) {
+            enable = setting.enable;
+            break;
+          }
+
+      contents += `
+      <div class="form-group">
+          <label>${user.name}</label>
+          <input id="sharedVision-${user.id}" type="checkbox" name="sharedVision-${user.id}" data-dtype="Boolean" ${enable ? 'checked' : ''}>
+        </div>
+      `
+    }
+
     html.find("button[name = 'submit']").before(contents);
     const element = document.getElementById("permission");
     element.style.height = "";
@@ -99,13 +141,22 @@ export async function onClosePermissionControl(permissionControl,html){
     const actor = permissionControl.object;
     if (actor.entity != "Actor") return;
 
-    const enable = html.find("input[name = 'sharedVision']")[0].checked;
+    const btnEnable = html.find("input[name = 'sharedVisionButton']")[0].checked;
 
-    await actor.setFlag('SharedVision','enable',enable);
-    if (game.settings.get(MODULE.moduleName,'enable')){
-      setShareVision(true);
-      SOCKET.emitSharedVision(true);
+    await actor.setFlag('SharedVision','enable',btnEnable);
+
+    let userSetting = [];
+    const users = game.users.entities;
+    for (let user of users){
+      if (user.isGM) continue;
+      const enable = html.find("input[name = 'sharedVision-"+user.id+"']")[0].checked;
+      userSetting.push({id:user.id, enable:enable});
     }
+
+    await actor.setFlag('SharedVision','userSetting',userSetting);
+
+    initializeSources();
+    SOCKET.emitSharedVision(game.settings.get(MODULE.moduleName,'enable'));
 }
 
 export function onSetShareVision(data){
@@ -125,17 +176,9 @@ export async function shareVision(en) {
     await game.settings.set(MODULE.moduleName,'enable',en);
     SOCKET.emitSharedVision(en);
     Hooks.call("ShareVision",{enable:en});
-  }
+}
   
-export async function setShareVision(enable){
-    const tokens = canvas.tokens.children[0].children;
-    for (let t of tokens) 
-      t.updateSource();
-    const token = canvas.tokens.ownedTokens[0];
-    if (token != undefined) {
-      const lightAngle = token.lightAngle;
-      await token.update({lightAngle:(lightAngle+0.0001)})
-      await token.update({lightAngle:lightAngle})
-    }
-  }
+export function initializeSources(){
+  canvas.initializeSources();
+}
 
