@@ -35,15 +35,14 @@ function isVisionSourceOverride() {
   let sharedVision = false;
   if (game.user.isGM == false && this.actor != null) {
     if (game.settings.get(MODULE.moduleName,'enable')) {
-      sharedVision = this.actor.data.flags.SharedVision ? this.actor.data.flags.SharedVision.enable : false; 
+      sharedVision = this.actor.data.flags.SharedVision != undefined ? this.actor.data.flags.SharedVision.enable : false; 
     }
     if (sharedVision == false) {
-      const userSetting = this.actor.data.flags.SharedVision.userSetting;
+      const userSetting = this.actor.data.flags.SharedVision?.userSetting;
       if (userSetting != undefined) {
         for (let setting of userSetting)
           if (setting.id == game.userId) {
             sharedVision = setting.enable;
-            console.log(game.userId,userSetting,sharedVision)
             break;
           }
       }

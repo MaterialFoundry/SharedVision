@@ -1,5 +1,8 @@
 # Changelog
 
+### v1.0.2 - 15-02-2021
+-Fixed issue where the canvas would not load with Shared Vision enabled
+
 ### v1.0.1 - 12-02-2021
 -Minor improvements and fixes
 -Added option to always share vision based on actor permission level
