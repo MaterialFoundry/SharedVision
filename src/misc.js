@@ -34,6 +34,10 @@ function isVisionSourceOverride() {
 
   let sharedVision = false;
   if (game.user.isGM == false && this.actor != null) {
+    if (this.data.hidden) {
+      if ( (midiQOL && this.actor?.hasPerm(game.user, "OWNER")) == false && this.actor.data.flags.SharedVision?.hidden == false) return false;
+    }
+
     if (game.settings.get(MODULE.moduleName,'enable')) {
       sharedVision = this.actor.data.flags.SharedVision != undefined ? this.actor.data.flags.SharedVision.enable : false; 
     }
@@ -99,15 +103,23 @@ export function onRenderPermissionControl(permissionControl,html){
     if (actor.entity != "Actor") return;
     let btnEnable = actor.getFlag('SharedVision','enable');
     if (btnEnable == undefined) btnEnable = false;
+    let hidden = actor.getFlag('SharedVision','hidden');
     let userSetting = actor.getFlag('SharedVision','userSetting');
   
     let contents = `
       <hr>
-      <p class="notes">${game.i18n.localize("SharedVision.ActorConf.Global.Note")}</p>
+      <h3>Shared Vision</h3>
       <div class="form-group">
         <label>${game.i18n.localize("SharedVision.ActorConf.Global.Label")}</label>
         <input id="sharedVisionButton" type="checkbox" name="sharedVisionButton" data-dtype="Boolean" ${btnEnable ? 'checked' : ''}>
       </div>
+      <p class="notes">${game.i18n.localize("SharedVision.ActorConf.Global.Note")}</p>
+
+      <div class="form-group">
+        <label>${game.i18n.localize("SharedVision.ActorConf.Hidden.Label")}</label>
+        <input id="sharedVisionHiddenButton" type="checkbox" name="sharedVisionHiddenButton" data-dtype="Boolean" ${hidden ? 'checked' : ''}>
+      </div>
+      <p class="notes">${game.i18n.localize("SharedVision.ActorConf.Hidden.Note")}</p>
       <hr>
       <p class="notes">${game.i18n.localize("SharedVision.ActorConf.User.Note")}</p>
       
@@ -143,6 +155,10 @@ export async function onClosePermissionControl(permissionControl,html){
     const btnEnable = html.find("input[name = 'sharedVisionButton']")[0].checked;
 
     await actor.setFlag('SharedVision','enable',btnEnable);
+
+    const hidden = html.find("input[name = 'sharedVisionHiddenButton']")[0].checked;
+
+    await actor.setFlag('SharedVision','hidden',hidden);
 
     let userSetting = [];
     const users = game.users.entities;

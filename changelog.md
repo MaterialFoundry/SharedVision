@@ -1,4 +1,6 @@
 # Changelog
+### v1.0.3 - 18-02-2021
+-Added setting to the Actor Permission Configuration to enable or disabled vision sharing for hidden/invisible tokens.
 
 ### v1.0.2 - 15-02-2021
 -Fixed issue where the canvas would not load with Shared Vision enabled

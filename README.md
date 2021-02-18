@@ -5,7 +5,7 @@ Shared Vision allows you to configure actors so they will always share their vis
 <br>
 Besides sharing the vision of all players tokens with all players, you could specify with what player the actor should share its vision. This could be useful if a player controls multiple tokens, such as familiars.<br>
 <br>
-A control button allows you to easily toggle vision sharing for all players for specified actors (Global Shared Vision). The reasoning behind this is that, when dugeon delving, the player in the back of the marching order will miss out on all the awesome stuff that's happening at the front. The GM might have prepared an awesome cut-scene, with vivid descriptions, but the wizard at the back isn't in the same room yet as the fighter in the front, so the wizard's player is missing out on all the action!<br>
+A control button allows you to easily toggle vision sharing for all players for specified actors (Global Shared Vision). The reasoning behind this is that, when dungeon delving, the player in the back of the marching order will miss out on all the awesome stuff that's happening at the front. The GM might have prepared an awesome cut-scene, with vivid descriptions, but the wizard at the back isn't in the same room yet as the fighter in the front, so the wizard's player is missing out on all the action!<br>
 Shared Vision allows the GM to press a button, and the vision between specified tokens will be shared with all players, so everyone gets to enjoy the cool stuff at the front.<br>
 
 <h1>Instructions</h1>
@@ -29,8 +29,10 @@ The 'Global Shared Vision' checkbox determines if this actor should share its vi
 Below that you'll find a checkbox next to each (non GM) user's name, checking these boxes will always share that actors vision with the specific users, 
 regardless of whether 'Global Shared Vision' is enabled.<br>
 <br>
-Players do not need to have any permissions in order for the tokens to share their view. This will work if the token is an NPC or even if it is invisible.<br>
-You could, for example, add invisible tokens to a spot where you want everyone to be able to see.
+Ticking the 'Share Hidden' checkbox will result in the actor sharing its vision even if the actor's tokens are hidden/invisible.<br>
+You could, for example, add invisible tokens to a spot where you want everyone to be able to see.<br>
+<br>
+Players do not need to have any permissions in order for the tokens to share their view. This will work if the token is an NPC.<br>
 
 ![permissionConfiguration](https://github.com/CDeenen/SharedVision/blob/master/img/examples/PermissionConfiguration.png)
 
@@ -74,7 +76,8 @@ Shared Vision overrides the default 'Token.prototype._isVisionSource' method whi
 For this reason, <a href="https://foundryvtt.com/packages/lib-wrapper/">libWrapper</a> was implemented.<br>
 <br>
 <a href="https://foundryvtt.com/packages/midi-qol/">Midi QOL</a> has the 'Players control owned hidden tokens' setting that could cause issues. By default it should work fine, but if you have libWrapper installed and Midi QOL is set to a higher priority than Shared Vision, Shared Vision will no longer work.<br>
-
+<br>
+Grape-Juice's Isometric module is currently not compatible, but this will hopefully change soon
 
 <h1>Feedback</h1>
 If you have any suggestions or bugs to report, feel free to submit an <a href="https://github.com/CDeenen/SharedVision/issues">issue</a>, contact me on Discord (Cris#6864), or send me an email: cdeenen@outlook.com.
