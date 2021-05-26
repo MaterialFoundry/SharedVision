@@ -1,18 +1,18 @@
-import * as MISC from "./misc.js";
-import * as EXTERNAL from "./externalModules.js";
+import {initializeSources} from "./misc.js";
+import {heyWait_onTrigger} from "./externalModules.js";
 
 /*
  * Set up the socket used to communicate between GM and player clients
  */
 export function socketInit(){
     game.socket.on(`module.SharedVision`, (payload) =>{
-        if (game.user.isGM == false && payload.msgType == "enable") MISC.initializeSources();
-        else if (game.user.isGM && payload.msgType == "userSet") MISC.onSetShareVision({enable:payload.enable});
+        if (game.user.isGM == false && payload.msgType == "enable") initializeSources();
+        else if (game.user.isGM && payload.msgType == "userSet") onSetShareVision({enable:payload.enable});
     }); 
     
     game.socket.on('module.hey-wait', (payload) =>{
         if (game.user.isGM) 
-            EXTERNAL.heyWait_onTrigger(payload.sceneId,payload.tileId);
+            heyWait_onTrigger(payload.sceneId,payload.tileId);
     });
 }
 

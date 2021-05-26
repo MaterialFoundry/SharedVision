@@ -20,19 +20,22 @@ For example, if you always want to share vision with all tokens with permission 
 
 ![moduleSettings](https://github.com/CDeenen/SharedVision/blob/master/img/examples/ModuleSettings.png)
 
-<h2>Actor Configuration</h2>
-To configure which tokens should share their vision, you must go to the 'Permission Configuration' for the actor of that token.<br>
-You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Configure Permissions'.
-The 'Permission Configuration' screen will now open, and there will be some new options.<br>
+<h2>Actor Vision Configuration</h2>
+To configure which tokens should share their vision, you must go to the 'Vision Config' for the actor of that token.<br>
+You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Shared Vision'.
+The 'Vision Config' screen will now open.<br>
 <br>
 The 'Global Shared Vision' checkbox determines if this actor should share its vision if the 'Global Shared Vision' control button is enabled.<br>
-Below that you'll find a checkbox next to each (non GM) user's name, checking these boxes will always share that actors vision with the specific users, 
-regardless of whether 'Global Shared Vision' is enabled.<br>
 <br>
 Ticking the 'Share Hidden' checkbox will result in the actor sharing its vision even if the actor's tokens are hidden/invisible.<br>
 You could, for example, add invisible tokens to a spot where you want everyone to be able to see.<br>
 <br>
-Players do not need to have any permissions in order for the tokens to share their view. This will work if the token is an NPC.<br>
+Below that you'll find a checkbox next to each (non GM) user's name, checking these boxes will always share that actors vision with the specific users, 
+regardless of whether 'Global Shared Vision' is enabled.<br>
+<br>
+
+Players do not need to have any permissions in order for the tokens to share their view. This will also work if the token is an NPC.<br>
+        
 
 ![permissionConfiguration](https://github.com/CDeenen/SharedVision/blob/master/img/examples/PermissionConfiguration.png)
 

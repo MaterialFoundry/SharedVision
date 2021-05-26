@@ -1,67 +1,74 @@
-import * as MODULE from "../sharedvision.js";
-import * as MISC from "./misc.js";
+import {moduleName} from "../sharedvision.js";
+import {initializeSources} from "./misc.js";
 
 /*
  * Initialize all settings
  */
 export const registerSettings = function() {
   //Create the Help button
-  game.settings.registerMenu(MODULE.moduleName, 'helpMenu',{
+  game.settings.registerMenu(moduleName, 'helpMenu',{
     name: "SharedVision.Sett.Help",
     label: "SharedVision.Sett.Help",
     type: helpMenu,
     restricted: true
   });
 
-  game.settings.register(MODULE.moduleName,'none', {
+  game.settings.register(moduleName,'none', {
     name: "SharedVision.Sett.None.Name",
     hint: "SharedVision.Sett.None.Hint",
     scope: "world",
     config: true,
     default: false,
     type: Boolean,
-    onChange: x => MISC.initializeSources()
+    onChange: x => initializeSources()
   });
 
-  game.settings.register(MODULE.moduleName,'limited', {
+  game.settings.register(moduleName,'limited', {
     name: "SharedVision.Sett.Limited.Name",
     hint: "SharedVision.Sett.Limited.Hint",
     scope: "world",
     config: true,
     default: false,
     type: Boolean,
-    onChange: x => MISC.initializeSources()
+    onChange: x => initializeSources()
   });
 
-  game.settings.register(MODULE.moduleName,'observer', {
+  game.settings.register(moduleName,'observer', {
     name: "SharedVision.Sett.Observer.Name",
     hint: "SharedVision.Sett.Observer.Hint",
     scope: "world",
     config: true,
     default: false,
     type: Boolean,
-    onChange: x => MISC.initializeSources()
+    onChange: x => initializeSources()
   });
 
-  game.settings.register(MODULE.moduleName,'owner', {
+  game.settings.register(moduleName,'owner', {
     name: "SharedVision.Sett.Owner.Name",
     hint: "SharedVision.Sett.Owner.Hint",
     scope: "world",
     config: true,
     default: false,
     type: Boolean,
-    onChange: x => MISC.initializeSources()
+    onChange: x => initializeSources()
   });
 
 
-  game.settings.register(MODULE.moduleName,'enable', {
+  game.settings.register(moduleName,'enable', {
     scope: "world",
     config: false,
     default: false,
     type: Boolean,
   });
 
-  game.settings.register(MODULE.moduleName,'midiQOL-dialog', {
+  game.settings.register(moduleName,'midiQOL-dialog', {
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register(moduleName,'updateNotificationV1.0.4', {
     scope: "world",
     config: false,
     default: false,
@@ -78,19 +85,18 @@ export class helpMenu extends FormApplication {
    * Default Options for this FormApplication
    */
   static get defaultOptions() {
-      return mergeObject(super.defaultOptions, {
-          id: "helpMenu",
-          title: "Shared Vision: "+game.i18n.localize("SharedVision.Sett.Help"),
-          template: "./modules/SharedVision/templates/helpMenu.html",
-          width: "500px"
-      });
+    return mergeObject(super.defaultOptions, {
+      id: "helpMenu",
+      title: "Shared Vision: "+game.i18n.localize("SharedVision.Sett.Help"),
+      template: "./modules/SharedVision/templates/helpMenu.html",
+      width: "500px"
+    });
   }
 
   /**
    * Provide data to the template
    */
   getData() {
-    
       return {
          
       } 
@@ -106,8 +112,7 @@ export class helpMenu extends FormApplication {
   }
 
   activateListeners(html) {
-      super.activateListeners(html);
-      
+    super.activateListeners(html);  
   }
 }
 

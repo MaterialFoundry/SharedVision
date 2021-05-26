@@ -1,4 +1,8 @@
 # Changelog
+### v1.0.4 - 26-05-2021
+-Made compatible with Foundry 0.8.5
+-The vision configuration has been removed from the actor permission configuration screen. Instead, it now has its own configuration screen. You can find this by right-clicking an actor in the Actors Directory, and selecting 'Shared Vision'.
+
 ### v1.0.3 - 18-02-2021
 -Added setting to the Actor Permission Configuration to enable or disabled vision sharing for hidden/invisible tokens.
 

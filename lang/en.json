@@ -11,10 +11,13 @@
     
     "SharedVision.CtrlBtn.Enable": "Enable Global Shared Vision",
     
-    "SharedVision.ActorConf.Global.Note": "Configure whether this actor should share its vision with all users when the 'Enable Shared Vision' control button is enabled.",
-    "SharedVision.ActorConf.Global.Label": "Global Shared Vision",
-    "SharedVision.ActorConf.Hidden.Note": "Share vision for tokens that are hidden/invisible.",
-    "SharedVision.ActorConf.Hidden.Label": "Share Hidden",
-    "SharedVision.ActorConf.User.Note": "Configure whether this actor should always share vision with specific users, regardless of if the 'Enable Shared Vision' control button is enabled."
+    "SharedVision.VisionConf.Title": "Vision Config",
+    "SharedVision.VisionConf.Global.Note": "Configure whether this actor should share its vision with all users when the 'Enable Shared Vision' control button is enabled.",
+    "SharedVision.VisionConf.Global.Label": "Global Shared Vision",
+    "SharedVision.VisionConf.Hidden.Note": "Share vision for tokens that are hidden/invisible.",
+    "SharedVision.VisionConf.Hidden.Label": "Share Hidden",
+    "SharedVision.VisionConf.User.Note": "Configure whether this actor should always share vision with specific users, regardless of if the 'Enable Shared Vision' control button is enabled.",
+    "SharedVision.VisionConf.Save": "Save"
+    
     
 }

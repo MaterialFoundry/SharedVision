@@ -1,5 +1,5 @@
-import * as MODULE from "../sharedvision.js";
-import * as MISC from "./misc.js";
+import {moduleName} from "../sharedvision.js";
+import {shareVision} from "./misc.js";
 
 export function pushControlButtons(controls) {
     if (game.user.isGM) {
@@ -10,10 +10,10 @@ export function pushControlButtons(controls) {
                 title: game.i18n.localize("SharedVision.CtrlBtn.Enable"),
                 icon: "fas fa-eye",
                 toggle: true,
-                active: game.settings.get(MODULE.moduleName,'enable'),
+                active: game.settings.get(moduleName,'enable'),
                 visible: game.user.isGM,
                 onClick: (value) => {
-                    MISC.shareVision(value);
+                    shareVision(value);
                 }
             });
         }

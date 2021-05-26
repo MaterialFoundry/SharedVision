@@ -1,0 +1,27 @@
+<form autocomplete="off" onsubmit="event.preventDefault()" style="max-width:350px">
+    <div class="form-group">
+      <label>{{localize "SharedVision.VisionConf.Global.Label"}}</label>
+      <input id="sharedVisionButton" type="checkbox" name="sharedVisionButton" data-dtype="Boolean" {{#if btnEnable}}checked{{/if}}>
+    </div>
+    <p class="notes">{{localize "SharedVision.VisionConf.Global.Note"}}</p>
+
+    <div class="form-group">
+      <label>{{localize "SharedVision.VisionConf.Hidden.Label"}}</label>
+      <input id="sharedVisionHiddenButton" type="checkbox" name="sharedVisionHiddenButton" data-dtype="Boolean" {{#if hidden}}checked{{/if}}>
+    </div>
+    <p class="notes">{{localize "SharedVision.VisionConf.Hidden.Note"}}</p>
+    <hr>
+    <h3>User Settings</h3>
+    <p class="notes">{{localize "SharedVision.VisionConf.User.Note"}}</p>
+
+    {{#each users as |u|}}
+        <div class="form-group">
+            <label>{{u.name}}</label>
+            <input id="userVision-{{u.id}}" type="checkbox" name="sharedVision" data-dtype="Boolean" {{#if u.enable}}checked{{/if}}>
+        </div>
+    {{/each}}
+    <button type="submit" name="submit">
+        <i></i>{{localize "SharedVision.VisionConf.Save"}}
+    </button>
+
+</form>
