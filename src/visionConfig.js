@@ -33,12 +33,17 @@ export class visionConfig extends FormApplication {
         if (btnEnable == undefined) btnEnable = false;
         let hidden = this.actor.getFlag('SharedVision','hidden');
         let settings = this.actor.getFlag('SharedVision','userSetting');
+
+        if (typeof(settings) === 'object') {
+            settings = Object.values(settings);
+        }
+        
         const users = compatibleCore("0.8.5") ? game.users.contents : game.users.entities;
         let iteration = 0;
         for (let user of users){
             if (user.isGM) continue;
             let enable = false;
-            if (settings != undefined) 
+            if (settings != undefined && settings.length != undefined) 
             for (let setting of settings) 
                 if (user.id == setting.id) {
                     enable = setting.enable;
@@ -68,11 +73,17 @@ export class visionConfig extends FormApplication {
     async _updateObject(event, formData) {
         await this.actor.setFlag('SharedVision','enable',formData.sharedVisionButton);
         await this.actor.setFlag('SharedVision','hidden',formData.sharedVisionHiddenButton);
-        let settings = [];
-        for (let i=0; i<formData.sharedVision.length; i++) {
-            settings.push({id:this.userSettings[i].id, enable:formData.sharedVision[i]});
+        let newSettings = [];
+        if (formData.sharedVision.length == undefined) {
+            newSettings = [{id:this.userSettings[0].id, enable:formData.sharedVision}];
         }
-        await this.actor.setFlag('SharedVision','userSetting',settings);
+        else {
+            for (let i=0; i<formData.sharedVision.length; i++) {
+                newSettings.push({id:this.userSettings[i].id, enable:formData.sharedVision[i]});
+            }
+        }
+          
+        await this.actor.setFlag('SharedVision','userSetting',newSettings);
         initializeSources();
         emitSharedVision(game.settings.get(moduleName,'enable'));
     }

@@ -1,7 +1,11 @@
 # Changelog
+### v1.0.5 - 21-06-2021
+-In Foundry 0.8, foreground layers have been added. When non-owned tokens that share vision move underneath a foreground tile, this tile will now become transparant.
+-Some game systems, such as Shadowrun 5e, convert array actor flags to objects, which caused errors. This should now be fixed.
+-Confirmed compatibility with Foundry 0.8.7.
+
 ### v1.0.4 - 26-05-2021
--Made compatible with Foundry 0.8.5
--The vision configuration has been removed from the actor permission configuration screen. Instead, it now has its own configuration screen. You can find this by right-clicking an actor in the Actors Directory, and selecting 'Shared Vision'.
+-Made compatible with Foundry 0.8.5 -The vision configuration has been removed from the actor permission configuration screen. Instead, it now has its own configuration screen. You can find this by right-clicking an actor in the Actors Directory, and selecting 'Shared Vision'.
 
 ### v1.0.3 - 18-02-2021
 -Added setting to the Actor Permission Configuration to enable or disabled vision sharing for hidden/invisible tokens.

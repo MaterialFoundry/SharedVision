@@ -31,11 +31,52 @@ export async function shareVision(en) {
 }
   
 export function initializeSources(){
-  if (compatibleCore("0.8.5")) canvas.perception.initialize();
+  if (compatibleCore("0.8.5")) {
+    //canvas.perception.initialize();
+    canvas.perception.initialize({
+      sight: {initialize: true, refresh: true},
+      lighting: {refresh: true},
+      sounds: {refresh: true},
+      foreground: {refresh: true}
+    });
+  }
   else canvas.initializeSources();
 }
 
 export function getPermission(entity,user,permissionLevel) {
   return entity.hasPerm(user, permissionLevel)
+}
+
+export function isSharedVision(token) {
+  let sharedVision = false;
+  if (game.user.isGM == false && token.actor != null) {
+      if (token.data.hidden) {
+          if ( (midiQOL && getPermission(token.actor,game.user, "OWNER")) == false && token.actor.data.flags.SharedVision?.hidden == false) return false;
+      }
+
+      if (game.settings.get(moduleName,'enable')) {
+          sharedVision = token.actor.data.flags.SharedVision != undefined ? token.actor.data.flags.SharedVision.enable : false; 
+      }
+
+      if (sharedVision == false) {
+          let userSetting = token.actor.data.flags.SharedVision?.userSetting;
+          if (typeof(userSetting) === 'object') {
+            userSetting = Object.values(userSetting);
+        }
+          if (userSetting != undefined) {
+              for (let setting of userSetting)
+                  if (setting.id == game.userId) {
+                      sharedVision = setting.enable;
+                      break;
+                  }
+          }
+      }
+      
+      if (sharedVision == false) {
+          const permission = token.actor.data.permission?.[game.userId] ? token.actor.data.permission?.[game.userId] : token.actor.data.permission.default;
+          sharedVision = (permission==0 && game.settings.get(moduleName,'none')) || (permission==1 && game.settings.get(moduleName,'limited')) || (permission==2 && game.settings.get(moduleName,'observer')) || (permission==3 && game.settings.get(moduleName,'owner'));
+      }
+      return sharedVision;
+  } 
 }
 

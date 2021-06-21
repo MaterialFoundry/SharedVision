@@ -1,11 +1,11 @@
 import {pushControlButtons} from "./src/controlButtons.js";
-import {initializeSources, onSetShareVision} from "./src/misc.js";
+import {initializeSources, onSetShareVision, compatibleCore} from "./src/misc.js";
 import {triggerHappy_ControlToken, triggerHappy_onPreUpdateToken, heyWait_onTileHud, setTriggerHappyActive, setHeyWaitActive} from "./src/externalModules.js";
 import {visionConfig} from './src/visionConfig.js';
 import {libWrapper} from './src/shim.js';
 import {registerSettings} from "./src/settings.js";
 import {socketInit, emitSharedVision} from "./src/socket.js";
-import {isVisionSourceOverride} from './src/overrides.js';
+import {isVisionSourceOverride,updateOcclusionOverride} from './src/overrides.js';
 
 export const moduleName = "SharedVision";
 export let midiQOL;
@@ -35,10 +35,16 @@ function onInit(){
     if (midiQOL && game.settings.settings.has('midi-qol.playerControlsInvisibleTokens')) 
         midiQOL = game.settings.get('midi-qol','playerControlsInvisibleTokens');
     
-    if(game.modules.get('lib-wrapper')?.active) 
+    if(game.modules.get('lib-wrapper')?.active) {
         libWrapper.register("SharedVision", "Token.prototype._isVisionSource", isVisionSourceOverride, "OVERRIDE");
-    else 
-      Token.prototype._isVisionSource = isVisionSourceOverride;
+        if (compatibleCore('0.8.6')) libWrapper.register("SharedVision", "ForegroundLayer.prototype.updateOcclusion", updateOcclusionOverride, "OVERRIDE");
+    }
+        
+    else {
+        Token.prototype._isVisionSource = isVisionSourceOverride;
+        if (compatibleCore('0.8.6')) ForegroundLayer.prototype.updateOcclusion = updateOcclusionOverride;
+    }
+      
   
     // Add Vision Permission sheet to ActorDirectory context options
     const ActorDirectory__getEntryContextOptions = ActorDirectory.prototype._getEntryContextOptions;
@@ -79,7 +85,7 @@ async function onCanvasReady(){
 }
 
 function updateNotification(){
-    console.log('game.user',game.user)
+    /*
     if (game.settings.get(moduleName,"updateNotificationV1.0.4") == false && game.user.isGM) {
       let d = new Dialog({
         title: "Shared Vision update v1.0.4",
@@ -87,7 +93,7 @@ function updateNotification(){
         <h3>Shared Vision has been updated to version 1.0.4</h3>
         <p>
         The vision configuration has been removed from the actor permission configuration screen. Instead, it now has its own configuration screen.<br>
-        You can find this by right-clicking an actor in the Actors Directory, and selecting 'Shared Vision'.
+        You can find this by right-clicking an actor in the Actors Directory, and selection 'Shared Vision'.
         <br>
         <input type="checkbox" name="hide" data-dtype="Boolean">
         Don't show this screen again
@@ -105,5 +111,5 @@ function updateNotification(){
       });
       d.render(true);
     }
-    
+    */
   }
