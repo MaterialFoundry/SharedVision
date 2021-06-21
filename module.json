@@ -2,7 +2,7 @@
   "name": "SharedVision",
   "title": "Shared Vision",
   "description": "Shared Vision provides an easy way to toggle vision sharing between multiple tokens",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "CDeenen",
   "esmodules": ["./sharedvision.js"],
   "socket": true,

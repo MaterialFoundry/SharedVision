@@ -1,4 +1,4 @@
-import {moduleName} from "../sharedvision.js";
+import {moduleName, midiQOL} from "../sharedvision.js";
 import {emitSharedVision} from "./socket.js";
 
 export function compatibleCore(compatibleVersion){

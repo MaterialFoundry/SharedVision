@@ -1,4 +1,7 @@
 # Changelog
+### v1.0.6 - 21-06-2021
+-Fixed bug where the scene would not load for players if there's a hidden token present.
+
 ### v1.0.5 - 21-06-2021
 -In Foundry 0.8, foreground layers have been added. When non-owned tokens that share vision move underneath a foreground tile, this tile will now become transparant.
 -Some game systems, such as Shadowrun 5e, convert array actor flags to objects, which caused errors. This should now be fixed.
