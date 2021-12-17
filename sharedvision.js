@@ -23,29 +23,7 @@ Hooks.on('renderTileHUD', async (tileHud, html)                   =>  { heyWait_
 function onInit(){
     registerSettings(); 
     socketInit();
-  
-    const triggerHappy = game.modules.get("trigger-happy");
-    setTriggerHappyActive(triggerHappy != undefined && triggerHappy.active == true)
-  
-    const heyWait = game.modules.get("hey-wait");
-    setHeyWaitActive(heyWait != undefined && heyWait.active == true)
-  
-    midiQOL = game.modules.get('midi-qol')?.active;
-    if (midiQOL == undefined) midiQOL = false;
-    if (midiQOL && game.settings.settings.has('midi-qol.playerControlsInvisibleTokens')) 
-        midiQOL = game.settings.get('midi-qol','playerControlsInvisibleTokens');
     
-    if(game.modules.get('lib-wrapper')?.active) {
-        libWrapper.register("SharedVision", "Token.prototype._isVisionSource", isVisionSourceOverride, "OVERRIDE");
-        if (compatibleCore('0.8.6')) libWrapper.register("SharedVision", "ForegroundLayer.prototype.updateOcclusion", updateOcclusionOverride, "OVERRIDE");
-    }
-        
-    else {
-        Token.prototype._isVisionSource = isVisionSourceOverride;
-        if (compatibleCore('0.8.6')) ForegroundLayer.prototype.updateOcclusion = updateOcclusionOverride;
-    }
-      
-  
     // Add Vision Permission sheet to ActorDirectory context options
     const ActorDirectory__getEntryContextOptions = ActorDirectory.prototype._getEntryContextOptions;
     ActorDirectory.prototype._getEntryContextOptions = function () {
@@ -57,7 +35,7 @@ function onInit(){
                     return game.user.isGM;
                 },
                 callback: (li) => {
-                    const actor = this.constructor.collection.get(li.data("entityId"));
+                    const actor = compatibleCore("0.9.0") ? this.constructor.collection.get(li.data("documentId")) : this.constructor.collection.get(li.data("entityId"));
                     if (actor) {
                         let dialog = new visionConfig();
                         dialog.setActor(actor);
@@ -73,6 +51,29 @@ function onInit(){
     },500)
     
 }
+
+Hooks.once('ready', function() {
+    const triggerHappy = game.modules.get("trigger-happy");
+    setTriggerHappyActive(triggerHappy != undefined && triggerHappy.active == true)
+
+    const heyWait = game.modules.get("hey-wait");
+    setHeyWaitActive(heyWait != undefined && heyWait.active == true)
+
+    midiQOL = game.modules.get('midi-qol')?.active;
+    if (midiQOL == undefined) midiQOL = false;
+    if (midiQOL && game.settings.settings.has('midi-qol.playerControlsInvisibleTokens')) 
+        midiQOL = game.settings.get('midi-qol','playerControlsInvisibleTokens');
+    
+    if(game.modules.get('lib-wrapper')?.active) {
+        libWrapper.register("SharedVision", "Token.prototype._isVisionSource", isVisionSourceOverride, "OVERRIDE");
+        if (compatibleCore('0.8.6')) libWrapper.register("SharedVision", "ForegroundLayer.prototype.updateOcclusion", updateOcclusionOverride, "OVERRIDE");
+    }
+        
+    else {
+        Token.prototype._isVisionSource = isVisionSourceOverride;
+        if (compatibleCore('0.8.6')) ForegroundLayer.prototype.updateOcclusion = updateOcclusionOverride;
+    }
+});
 
 async function onCanvasReady(){
     if(midiQOL && game.modules.get('lib-wrapper')?.active == false) {

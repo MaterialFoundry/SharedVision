@@ -1,4 +1,9 @@
 # Changelog
+### v1.0.7 - 17-12-2021
+-Added option to share vision with tokens based on disposition
+-Fixed compatibility issue with midi-qol
+-Fixed compatibility with Foundry v0.9
+
 ### v1.0.6 - 21-06-2021
 -Fixed bug where the scene would not load for players if there's a hidden token present.
 

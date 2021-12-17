@@ -2,11 +2,13 @@ import {moduleName, midiQOL} from "../sharedvision.js";
 import {emitSharedVision} from "./socket.js";
 
 export function compatibleCore(compatibleVersion){
-  let coreVersion = game.data.version;
+  let coreVersion = game.version == undefined ? game.data.version : `0.${game.version}`;
   coreVersion = coreVersion.split(".");
   compatibleVersion = compatibleVersion.split(".");
   if (compatibleVersion[0] > coreVersion[0]) return false;
+  if (compatibleVersion[0] < coreVersion[0]) return true;
   if (compatibleVersion[1] > coreVersion[1]) return false;
+  if (compatibleVersion[1] < coreVersion[1]) return true;
   if (compatibleVersion[2] > coreVersion[2]) return false;
   return true;
 }
@@ -44,7 +46,7 @@ export function initializeSources(){
 }
 
 export function getPermission(entity,user,permissionLevel) {
-  return entity.hasPerm(user, permissionLevel)
+  return entity?.testUserPermission(game.user, permissionLevel);
 }
 
 export function isSharedVision(token) {
@@ -74,7 +76,8 @@ export function isSharedVision(token) {
       
       if (sharedVision == false) {
           const permission = token.actor.data.permission?.[game.userId] ? token.actor.data.permission?.[game.userId] : token.actor.data.permission.default;
-          sharedVision = (permission==0 && game.settings.get(moduleName,'none')) || (permission==1 && game.settings.get(moduleName,'limited')) || (permission==2 && game.settings.get(moduleName,'observer')) || (permission==3 && game.settings.get(moduleName,'owner'));
+          const disposition = token.data.disposition;
+          sharedVision = (permission==0 && game.settings.get(moduleName,'none')) || (permission==1 && game.settings.get(moduleName,'limited')) || (permission==2 && game.settings.get(moduleName,'observer')) || (permission==3 && game.settings.get(moduleName,'owner')) || (disposition == -1 && game.settings.get(moduleName,'hostile')) || (disposition == 0 && game.settings.get(moduleName,'neutral')) || (disposition == 1 && game.settings.get(moduleName,'friendly'));
       }
       return sharedVision;
   } 

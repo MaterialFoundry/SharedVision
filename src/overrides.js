@@ -31,8 +31,8 @@ function isVisionSourceOverride_MidiQOLFix() {
     // Otherwise vision is ignored for GM users
     if (isGM)
         return false;
-    if (getPermission(this.actor,game.user, "OWNER"))
-        return true;
+    //if (getPermission(this.actor,game.user, "OWNER"))
+       // return true;
 
     // If a non-GM user controls no other tokens with sight, display sight anyways
     const canObserve = this.actor && getPermission(this.actor,game.user, "OBSERVER");

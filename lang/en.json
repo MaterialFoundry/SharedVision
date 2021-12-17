@@ -8,6 +8,13 @@
     "SharedVision.Sett.Observer.Hint": "Always share token vision for tokens with 'observer' permission",
     "SharedVision.Sett.Owner.Name": "Actor permission: Owner",
     "SharedVision.Sett.Owner.Hint": "Always share token vision for tokens with 'owner' permission",
+    "SharedVision.Sett.Friendly.Name": "Token disposition: Friendly",
+    "SharedVision.Sett.Friendly.Hint": "Always share token vision for tokens with 'friendly' disposition",
+    "SharedVision.Sett.Neutral.Name": "Token disposition: Neutral",
+    "SharedVision.Sett.Neutral.Hint": "Always share token vision for tokens with 'neutral' disposition",
+    "SharedVision.Sett.Hostile.Name": "Token disposition: Hostile",
+    "SharedVision.Sett.Hostile.Hint": "Always share token vision for tokens with 'hostile' disposition",
+
     
     "SharedVision.CtrlBtn.Enable": "Enable Global Shared Vision",
     

@@ -77,7 +77,7 @@ For this reason, <a href="https://foundryvtt.com/packages/lib-wrapper/">libWrapp
 <br>
 <a href="https://foundryvtt.com/packages/midi-qol/">Midi QOL</a> has the 'Players control owned hidden tokens' setting that could cause issues. By default it should work fine, but if you have libWrapper installed and Midi QOL is set to a higher priority than Shared Vision, Shared Vision will no longer work.<br>
 <br>
-Grape-Juice's Isometric module is currently not compatible, but this will hopefully change soon
+Grape-Juice's Isometric module is currently not compatible
 
 <h1>Feedback</h1>
 If you have any suggestions or bugs to report, feel free to submit an <a href="https://github.com/CDeenen/SharedVision/issues">issue</a>, contact me on Discord (Cris#6864), or send me an email: cdeenen@outlook.com.

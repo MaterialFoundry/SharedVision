@@ -53,6 +53,36 @@ export const registerSettings = function() {
     onChange: x => initializeSources()
   });
 
+  game.settings.register(moduleName,'friendly', {
+    name: "SharedVision.Sett.Friendly.Name",
+    hint: "SharedVision.Sett.Friendly.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: x => initializeSources()
+  });
+
+  game.settings.register(moduleName,'neutral', {
+    name: "SharedVision.Sett.Neutral.Name",
+    hint: "SharedVision.Sett.Neutral.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: x => initializeSources()
+  });
+
+  game.settings.register(moduleName,'hostile', {
+    name: "SharedVision.Sett.Hostile.Name",
+    hint: "SharedVision.Sett.Hostile.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: x => initializeSources()
+  });
+
 
   game.settings.register(moduleName,'enable', {
     scope: "world",
