@@ -32,7 +32,7 @@ export async function shareVision(en) {
   Hooks.call("ShareVision",{enable:en});
 }
   
-export function initializeSources(){
+export async function initializeSources(updateSource = false){
   if (compatibleCore("0.8.5")) {
     //canvas.perception.initialize();
     canvas.perception.initialize({
@@ -42,7 +42,20 @@ export function initializeSources(){
       foreground: {refresh: true}
     });
   }
-  else canvas.initializeSources();
+  else await canvas.initializeSources();
+
+  const tokens = canvas.tokens.placeables;
+  let sightLayer = canvas.layers.find(l => l.options.name === 'sight');
+  for (let token of tokens) {
+    const actor = game.actors.get(token.data.actorId);
+    const userSettings = actor.getFlag('SharedVision','userSetting');
+    let thisUser = userSettings?.find(u => u.id == game.userId)?.enable
+    if (actor.getFlag('SharedVision','enable') || thisUser) {
+      let origin = token.getSightOrigin();
+      sightLayer.updateFog(origin, true);
+      //sightLayer.sources.set(token.sourceId,token.source)
+    }
+  }
 }
 
 export function getPermission(entity,user,permissionLevel) {

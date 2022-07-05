@@ -74,14 +74,11 @@ export class visionConfig extends FormApplication {
         await this.actor.setFlag('SharedVision','enable',formData.sharedVisionButton);
         await this.actor.setFlag('SharedVision','hidden',formData.sharedVisionHiddenButton);
         let newSettings = [];
-        if (formData.sharedVision.length == undefined) {
-            newSettings = [{id:this.userSettings[0].id, enable:formData.sharedVision}];
-        }
-        else {
-            for (let i=0; i<formData.sharedVision.length; i++) {
-                newSettings.push({id:this.userSettings[i].id, enable:formData.sharedVision[i]});
-            }
-        }
+
+        for (let user of this.userSettings) 
+            if (formData?.[`sharedVision-${user.id}`] === true || formData?.[`sharedVision-${user.id}`] === false)
+                newSettings.push({id: user.id, enable: formData?.[`sharedVision-${user.id}`]});
+        
           
         await this.actor.setFlag('SharedVision','userSetting',newSettings);
         initializeSources();

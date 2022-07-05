@@ -43,13 +43,12 @@ The control button has an eye icon, and is toggleable.
 ![controlButtons](https://github.com/CDeenen/SharedVision/blob/master/img/examples/ControlButtons.png)
 
 <h2>Trigger Happy</h2>
-<a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> can add triggers to Foundry, for example when a token moves onto another token, or when it is clicked.
-Global Shared Vision can be triggered through Trigger Happy on a 'click' or 'move' trigger.<br>
-You set this up like you would any other trigger, and you add 'shareVision=true', 'shareVision=false' or 'shareVision=toggle' to the '@Trigger' pseudo link.<br>
+Global Shared Vision can be enabled through <a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> triggers, for example when a token moves onto another token, or when it is clicked.<br>
+You set this up like you would any other trigger, and you add `@SharedVision[toggle]`, `@SharedVision[enable]` or `@SharedVision[disable]` trigger to toggle, enable or disable Global Shared Vision, respectively.<br>
 <br>
 <b>Example:</b><br>
 To enable Global Shared Vision when a token moves unto another token called 'test', you use:<br>
-'@Token[test] @Trigger[move shareVision=true]'<br>
+`@Token[test] @Trigger[move] @SharedVision[enable]`<br>
 <br>
 For more info on how to use Trigger Happy, please read the <a href="https://github.com/League-of-Foundry-Developers/fvtt-module-trigger-happy/blob/master/README.md">documentation</a>.
         

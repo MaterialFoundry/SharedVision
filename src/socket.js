@@ -1,4 +1,4 @@
-import {initializeSources} from "./misc.js";
+import {initializeSources, onSetShareVision} from "./misc.js";
 import {heyWait_onTrigger} from "./externalModules.js";
 
 /*
@@ -6,21 +6,24 @@ import {heyWait_onTrigger} from "./externalModules.js";
  */
 export function socketInit(){
     game.socket.on(`module.SharedVision`, (payload) =>{
-        if (game.user.isGM == false && payload.msgType == "enable") initializeSources();
+        if (game.user == null) return;
+        if (game.user.isGM == false && payload.msgType == "enable") initializeSources(payload.newSource);
         else if (game.user.isGM && payload.msgType == "userSet") onSetShareVision({enable:payload.enable});
     }); 
     
     game.socket.on('module.hey-wait', (payload) =>{
+        if (game.user == null) return;
         if (game.user.isGM) 
             heyWait_onTrigger(payload.sceneId,payload.tileId);
     });
 }
 
-export function emitSharedVision(en){
+export function emitSharedVision(en, newSource = true){
     const payload = {
         "msgType": "enable",
         "senderId": game.userId, 
-        "enable": en
+        "enable": en,
+        "newSource": newSource
     };
     game.socket.emit(`module.SharedVision`, payload);
 }

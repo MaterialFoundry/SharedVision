@@ -1,6 +1,6 @@
 import {pushControlButtons} from "./src/controlButtons.js";
 import {initializeSources, onSetShareVision, compatibleCore} from "./src/misc.js";
-import {triggerHappy_ControlToken, triggerHappy_onPreUpdateToken, heyWait_onTileHud, setTriggerHappyActive, setHeyWaitActive} from "./src/externalModules.js";
+import {heyWait_onTileHud, setTriggerHappyActive, setHeyWaitActive} from "./src/externalModules.js";
 import {visionConfig} from './src/visionConfig.js';
 import {libWrapper} from './src/shim.js';
 import {registerSettings} from "./src/settings.js";
@@ -11,13 +11,14 @@ export const moduleName = "SharedVision";
 export let midiQOL;
 
 Hooks.once('init', function()                                         { onInit() });
+Hooks.once('setup', function()                                        { onSetup() });
 Hooks.on('getSceneControlButtons', (controls)                     =>  { pushControlButtons(controls) });  //Register control button
 Hooks.on('setShareVision',(data)                                  =>  { onSetShareVision(data) });
 Hooks.on('canvasReady',()                                         =>  { onCanvasReady() });
-Hooks.on('updateToken',()                                         =>  { emitSharedVision(game.settings.get(moduleName,'enable'))});
+Hooks.on('updateToken',()                                         =>  { emitSharedVision(game.settings.get(moduleName,'enable'), false)});
 
-Hooks.on('controlToken',(token,controlled)                        =>  { triggerHappy_ControlToken(token,controlled) });
-Hooks.on('preUpdateToken',(scene, embedded, update)               =>  { triggerHappy_onPreUpdateToken(scene, embedded, update) });
+//Hooks.on('controlToken',(token,controlled)                        =>  { triggerHappy_ControlToken(token,controlled) });
+//Hooks.on('preUpdateToken',(scene, embedded, update)               =>  { triggerHappy_onPreUpdateToken(scene, embedded, update) });
 Hooks.on('renderTileHUD', async (tileHud, html)                   =>  { heyWait_onTileHud(tileHud,html) });
 
 function onInit(){
@@ -52,9 +53,13 @@ function onInit(){
     
 }
 
-Hooks.once('ready', function() {
+function onSetup() {
     const triggerHappy = game.modules.get("trigger-happy");
     setTriggerHappyActive(triggerHappy != undefined && triggerHappy.active == true)
+}
+
+Hooks.once('ready', function() {
+    
 
     const heyWait = game.modules.get("hey-wait");
     setHeyWaitActive(heyWait != undefined && heyWait.active == true)
@@ -73,6 +78,8 @@ Hooks.once('ready', function() {
         Token.prototype._isVisionSource = isVisionSourceOverride;
         if (compatibleCore('0.8.6')) ForegroundLayer.prototype.updateOcclusion = updateOcclusionOverride;
     }
+
+    if (!game.user.isGM) initializeSources();
 });
 
 async function onCanvasReady(){

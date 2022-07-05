@@ -1,4 +1,10 @@
 # Changelog
+### v1.0.8 - 05-07-2022
+-Fixed issue where the user settings in the vision config wouldn't save under certain circumstances
+-Fixed Trigger Happy compatibility
+-Fog of War is now updated for tokens that share their vision
+-Fixed issue where shared vision would not be properly applied after a refresh
+
 ### v1.0.7 - 17-12-2021
 -Added option to share vision with tokens based on disposition
 -Fixed compatibility issue with midi-qol

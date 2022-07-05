@@ -10,6 +10,7 @@
       <input id="sharedVisionHiddenButton" type="checkbox" name="sharedVisionHiddenButton" data-dtype="Boolean" {{#if hidden}}checked{{/if}}>
     </div>
     <p class="notes">{{localize "SharedVision.VisionConf.Hidden.Note"}}</p>
+
     <hr>
     <h3>User Settings</h3>
     <p class="notes">{{localize "SharedVision.VisionConf.User.Note"}}</p>
@@ -17,7 +18,7 @@
     {{#each users as |u|}}
         <div class="form-group">
             <label>{{u.name}}</label>
-            <input id="userVision-{{u.id}}" type="checkbox" name="sharedVision" data-dtype="Boolean" {{#if u.enable}}checked{{/if}}>
+            <input id="userVision-{{u.id}}" type="checkbox" name="sharedVision-{{u.id}}" {{#if u.enable}}checked{{/if}}>
         </div>
     {{/each}}
     <button type="submit" name="submit">
