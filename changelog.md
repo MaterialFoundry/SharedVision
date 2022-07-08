@@ -1,4 +1,7 @@
 # Changelog
+### v1.0.9 - 08-07-2022
+Something went wrong with the previous update for Forge users. This should be fixed now.
+
 ### v1.0.8 - 05-07-2022
 -Fixed issue where the user settings in the vision config wouldn't save under certain circumstances
 -Fixed Trigger Happy compatibility
