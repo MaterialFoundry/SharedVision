@@ -1,44 +1,79 @@
 <h1>Shared Vision</h1>
-Shared Vision is a <a href="https://foundryvtt.com/">Foundry VTT</a> module that provides an easy way to share vision between multiple tokens.<br>
+Shared Vision is a module that provides an easy way to share vision between multiple tokens.<br>
 By default, you can do this in Foundry by giving every player observer permissions, but in that case tokens will only share vision if the player has no tokens selected.<br>
 Shared Vision allows you to configure actors so they will always share their vision, or only when you press a control button, or when it's triggered by <a href="https://foundryvtt.com/packages/trigger-happy/">Trigger Happy</a> or <a href="https://foundryvtt.com/packages/hey-wait/">Hey, Wait!</a><br>
 <br>
-Besides sharing the vision of all players tokens with all players, you could specify with what player the actor should share its vision. This could be useful if a player controls multiple tokens, such as familiars.<br>
+Besides sharing the vision of all players tokens with all players, there are some player-specific options.<br>
+An actor can be configured to always share its vision with specific players, it can also be configured to share its location with specific players (the token icon will be drawn over unexplored areas), or share its fog exploration with specific players.<br>
 <br>
 A control button allows you to easily toggle vision sharing for all players for specified actors (Global Shared Vision). The reasoning behind this is that, when dungeon delving, the player in the back of the marching order will miss out on all the awesome stuff that's happening at the front. The GM might have prepared an awesome cut-scene, with vivid descriptions, but the wizard at the back isn't in the same room yet as the fighter in the front, so the wizard's player is missing out on all the action!<br>
-Shared Vision allows the GM to press a button, and the vision between specified tokens will be shared with all players, so everyone gets to enjoy the cool stuff at the front.<br>
+Shared Vision allows the GM to press a button, and the vision between specified tokens will be shared with all players, so everyone gets to enjoy the cool stuff at the front.<br>  
 
 <h1>Instructions</h1>
 
 <h2>Module Settings</h2>
-You can access the module settings by pressing 'Game Settings' on the sidebar, clicking 'Module Settings' and searching for the 'Shared Vision' section.<br>
-At the top you'll find a help button that will open a screen with the same instructions as this readme file.<br>
+In the Shared Vision module settings, you can find 2 buttons. The first buttons opens a help menu containing the same documentation as this readme, while the second opens the module configuration.<br>
 <br>
-Besides the help button, you can enable always-on (also if you've not selected the token or if the token is invisible) vision sharing for each actor permission level. 
-Simply check the box for the permission level you want.<br>
-For example, if you always want to share vision with all tokens with permission level 'Observer', just check the box next to 'Actor Permission: Observer'.
+<h3>Configuration</h3>
+The module configuration window can be divided into 2 secions: 'Ownership & Disposition' and 'Combat'.<br>
+<br>
+
+<h4><b>Ownership & Disposition</b></h3>
+Here you can configure vision, token and fog of war sharing depending on the ownership level of tokens or their disposition. 
+These settings apply to all tokens, regardless of what has been configured in the actor's vision config.<br>
+<br>
+Each ownership level or disposition type has 3 options:
+<ul>
+    <li><b>Vision</b>: Share vision (automatically enables 'Token' and 'Fog')</li>
+    <li><b>Token</b>: Share the token's location by drawing the token icon on the canvas, even if the token is not in view of the user</li>
+    <li><b>Fog</b>: Share fog of war exploration</li>
+</ul>
+For example, checking 'vision' for 'Observer' will allow a user to see the vision of all tokens on the canvas that the user has observer ownership for.<br>
+<br>
+
+<h4><b>Combat</b></h3>
+In the 'Combat' section, you can configure 'Global Shared Vision' or 'Disable All Vision Sharing' to be enabled or disabled when combat starts or stops. 
+This will activate or deactivate the corresponding control buttons.
+<ul>
+    <li><b>Enable Global Shared Vision</b>: Shares the vision for actors with enabled 'Global Shared Vision' in the actor's 'Permission Configuration' screen</li>
+    <li><b>Disable All Vision Sharing</b>: Disables all vision/token/fog sharing</li>
+</ul>
 
 ![moduleSettings](https://github.com/CDeenen/SharedVision/blob/master/img/examples/ModuleSettings.png)
 
-<h2>Actor Configuration</h2>
-To configure which tokens should share their vision, you must go to the 'Permission Configuration' for the actor of that token.<br>
-You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Configure Permissions'.
-The 'Permission Configuration' screen will now open, and there will be some new options.<br>
+<h2>Vision Config</h2>
+To configure which tokens should share their vision, you must go to the 'Vision Config' for the actor of that token.<br>
+You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Shared Vision'.
+The 'Vision Config' screen will now open.<br>
+<br>
+To configure which tokens should share their vision, you must go to the 'Vision Config' for the actor of that token.<br>
+You can find this screen by selecting the 'Actors Directory' in the sidebar, right-clicking the actor, and pressing 'Shared Vision'.
+The 'Vision Config' screen will now open.<br>
 <br>
 The 'Global Shared Vision' checkbox determines if this actor should share its vision if the 'Global Shared Vision' control button is enabled.<br>
-Below that you'll find a checkbox next to each (non GM) user's name, checking these boxes will always share that actors vision with the specific users, 
-regardless of whether 'Global Shared Vision' is enabled.<br>
 <br>
 Ticking the 'Share Hidden' checkbox will result in the actor sharing its vision even if the actor's tokens are hidden/invisible.<br>
 You could, for example, add invisible tokens to a spot where you want everyone to be able to see.<br>
 <br>
-Players do not need to have any permissions in order for the tokens to share their view. This will work if the token is an NPC.<br>
+Below that you'll find a table with each user's name, with the following checkboxes:
+<ul>
+    <li><b>Vision</b>: Share vision (automatically enables 'Token' and 'Fog')</li>
+    <li><b>Token</b>: Share the token's location by drawing the token icon on the canvas, even if the token is not in view of the user</li>
+    <li><b>Fog</b>: Share fog of war exploration</li>
+</ul>
+
+These settings are enabled regardless of whether 'Global Shared Vision' is enabled.<br>
+
+Players do not need to have any permissions in order for the tokens to share their view, token location or fog exploration. This will also work if the token is an NPC.<br>
 
 ![permissionConfiguration](https://github.com/CDeenen/SharedVision/blob/master/img/examples/PermissionConfiguration.png)
 
-<h2>Control Button</h2>
-You can enable or disable 'Global Shared Vision' using a control button in the 'Basic Controls'. This only shares the vision for actors where you've checked 'Global Shared Vision' in the actor's 'Permission Configuration' screen.<br>
-The control button has an eye icon, and is toggleable.
+<h2>Control Buttons</h2>
+Shared vision has 2 control buttons located in the 'Token Controls':
+<ul>
+    <li><b>Enable Global Shared Vision</b>: Shares the vision for actors with enabled 'Global Shared Vision' in the actor's 'Permission Configuration' screen</li>
+    <li><b>Disable All Vision Sharing</b>: Disables all vision/token/fog sharing</li>
+</ul>
         
 ![controlButtons](https://github.com/CDeenen/SharedVision/blob/master/img/examples/ControlButtons.png)
 
@@ -64,11 +99,14 @@ Selecting and then right-clicking this tile will open the HUD which will show th
 ![heyWait](https://github.com/CDeenen/SharedVision/blob/master/img/examples/HeyWait.png)
 
 <h2>Triggering using hooks</h2>
-If you want to enable or disable the Global Shared Vision using macros or a different module, you can call the following hooks:<br>
-<br>
-<b>Enable:</b> Hooks.call("setShareVision",{enable:true})<br>
-<b>Disable:</b> Hooks.call("setShareVision",{enable:false})<br>
-<b>Toggle:</b> Hooks.call("setShareVision",{enable:'toggle'})<br>
+If you want to enable or disable 'Global Shared Vision' or 'Disable All Vision Sharing' using macros or a different module, you can call the following hook:<br>
+<pre>
+    Hooks.call("setSharedVision",{
+        globalSharedVision: [true/false/'toggle'],
+        disableAll: [true/false/'toggle']
+    })
+</pre>
+Where you have to select either 'true', 'false' or '"toggle"' (note the quotation marks around 'toggle')
 
 <h1>Module Compatibility</h1>
 Shared Vision overrides the default 'Token.prototype._isVisionSource' method while vision sharing is enabled. This could cause conflicts with other modules.<br>
@@ -76,11 +114,7 @@ For this reason, <a href="https://foundryvtt.com/packages/lib-wrapper/">libWrapp
 <br>
 <a href="https://foundryvtt.com/packages/midi-qol/">Midi QOL</a> has the 'Players control owned hidden tokens' setting that could cause issues. By default it should work fine, but if you have libWrapper installed and Midi QOL is set to a higher priority than Shared Vision, Shared Vision will no longer work.<br>
 <br>
-<<<<<<< HEAD
-Grape-Juice's Isometric module is currently not compatible
-=======
 Grape-Juice's Isometric module and Levels are currently not compatible<br>
->>>>>>> 631e9d9289323799b2dff9c2d5df750d20c0f319
 
 <h1>Feedback</h1>
 If you have any suggestions or bugs to report, feel free to submit an <a href="https://github.com/CDeenen/SharedVision/issues">issue</a>, contact me on Discord (Cris#6864), or send me an email: cdeenen@outlook.com.

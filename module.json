@@ -1,21 +1,34 @@
 {
-  "name": "SharedVision",
-  "title": "Shared Vision",
-  "description": "Shared Vision provides an easy way to toggle vision sharing between multiple tokens",
-  "version": "1.0.8",
-  "author": "CDeenen",
-  "esmodules": ["./sharedvision.js"],
-  "socket": true,
-  "minimumCoreVersion": "9.0",
-  "compatibleCoreVersion": "9.269",
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    }
-  ],
-  "url": "https://github.com/CDeenen/SharedVision",
-  "manifest": "https://raw.githubusercontent.com/CDeenen/SharedVision/master/module.json",
-  "download": "https://github.com/CDeenen/SharedVision/archive/master.zip"
+    "name": "SharedVision",
+    "id": "SharedVision",
+    "title": "Shared Vision",
+    "description": "Shared Vision provides an easy way to toggle vision sharing between multiple tokens",
+    "version": "1.1.0",
+    "author": "CDeenen",
+    "authors": [
+        {
+            "name": "CDeenen"
+        }
+    ],
+    "esmodules": [
+        "./sharedvision.js"
+    ],
+    "styles": ["./css/style.css"],
+    "socket": true,
+    "minimumCoreVersion": "9.0",
+    "compatibleCoreVersion": "10",
+    "compatibility": {
+        "minimum": "9",
+        "verified": "10"
+    },
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "url": "https://github.com/CDeenen/SharedVision",
+    "manifest": "https://github.com/CDeenen/SharedVision/releases/latest/download/module.json",
+    "download": "https://github.com/CDeenen/SharedVision/releases/download/1.1.0/module.zip"
 }

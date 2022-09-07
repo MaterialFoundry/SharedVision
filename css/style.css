@@ -1,0 +1,30 @@
+.sharedVision_table_name {
+    text-align: left;
+    width: 50%;
+}
+
+.sharedVision_table_cb {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.sharedVision_table_nameCombat {
+    text-align: left;
+    width: 50%;
+}
+
+.sharedVision_table_select {
+    
+    padding-left:5px;
+    vertical-align: middle;
+}
+
+.sharedVision_expandable {
+    cursor: pointer;
+}
+.sharedVision_collapsed {
+    display:none;
+}
+.sharedVision_expandableIcon {
+    border: none;
+}

@@ -1,0 +1,79 @@
+<form autocomplete="off" onsubmit="event.preventDefault()" style="max-width:350px">
+    <h3>{{localize "SharedVision.Conf.PermDisp.Label"}}</h3>
+    <p class="notes">{{localize "SharedVision.Conf.Note"}}</p>
+    <table>
+        <tr>
+          <th class="sharedVision_table_name">{{localize "SharedVision.Conf.Permission.Label"}}</th>
+          <th>{{localize "SharedVision.VisionConf.Vision"}}</th>
+          <th>{{localize "SharedVision.VisionConf.Token"}}</th>
+          <th>{{localize "SharedVision.VisionConf.Fog"}}</th>
+        </tr>
+      
+    {{#each permissions as |p|}}
+        <tr>
+            <td>{{p.name}}</td>
+            <td class="sharedVision_table_cb"><input type="checkbox" name="permission-vision-{{p.id}}" {{#if p.permissions.vision}}checked{{/if}}></td>
+            <td class="sharedVision_table_cb"><input type="checkbox" name="permission-token-{{p.id}}" {{#if p.permissions.token}}checked{{/if}}></td>
+            <td class="sharedVision_table_cb"><input type="checkbox" name="permission-fog-{{p.id}}" {{#if p.permissions.fog}}checked{{/if}}></td>
+        </tr>
+    {{/each}}
+    </table>
+
+    <table>
+        <tr>
+            <th class="sharedVision_table_name">{{localize "SharedVision.Conf.Disposition.Label"}}</th>
+            <th>{{localize "SharedVision.VisionConf.Vision"}}</th>
+            <th>{{localize "SharedVision.VisionConf.Token"}}</th>
+            <th>{{localize "SharedVision.VisionConf.Fog"}}</th>
+        </tr>
+      
+        {{#each dispositions as |d|}}
+            <tr>
+                <td>{{d.name}}</td>
+                <td class="sharedVision_table_cb"><input type="checkbox" name="disposition-vision-{{d.id}}" {{#if d.permissions.vision}}checked{{/if}}></td>
+                <td class="sharedVision_table_cb"><input type="checkbox" name="disposition-token-{{d.id}}" {{#if d.permissions.token}}checked{{/if}}></td>
+                <td class="sharedVision_table_cb"><input type="checkbox" name="disposition-fog-{{d.id}}" {{#if d.permissions.fog}}checked{{/if}}></td>
+            </tr>
+        {{/each}}
+    </table>
+  
+    <h3>{{localize "SharedVision.Conf.Combat.Label"}}</h3>
+    <p class="notes">{{localize "SharedVision.Conf.Combat.Note"}}</p>
+
+    <table>
+        <tr>
+            <th class="sharedVision_table_nameCombat"></th>
+            <th>{{localize "SharedVision.Conf.CombatStart.Label"}}</th>
+            <th>{{localize "SharedVision.Conf.CombatEnd.Label"}}</th>
+        </tr>
+      
+        {{#each combat as |c|}}
+            <tr>
+                <td>{{c.name}}</td>
+                <td class="sharedVision_table_select">
+                    <select name="combatSelect-start-{{c.id}}">
+                        {{#select c.start}}
+                            <option value="none">No Change</option>
+                            <option value="enable">Enable</option>
+                            <option value="disable">Disable</option>
+                        {{/select}}
+                    </select>
+                </td>
+                <td class="sharedVision_table_select">
+                    <select name="combatSelect-end-{{c.id}}">
+                        {{#select c.end}}
+                            <option value="none">No Change</option>
+                            <option value="enable">Enable</option>
+                            <option value="disable">Disable</option>
+                        {{/select}}
+                    </select>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+
+    <button type="submit" name="submit">
+        <i></i>{{localize "SharedVision.VisionConf.Save"}}
+    </button>
+  
+</form>

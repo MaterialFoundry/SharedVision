@@ -1,4 +1,14 @@
 # Changelog
+### v1.1.0 - 06-09-2022
+-Made compatible with Foundry v10
+-Added options to share the token location and fog exploration of tokens, without sharing their vision. Can be configured in the Vision Config for actors, or in the module settings for ownership/disposition.
+-All module settings have been moved to a menu within the module settings
+-The GM can now also be configured to share vision to
+-Added a 'Disable All' control button which disables all vision/token/fog sharing
+-Changed the 'Enable Global Shared Vision' icon to a globe
+-Changed to hook to control module functions from 'setShareVision' to 'setSharedVision'
+-Added option to trigger 'Global Shared Vision' or 'Disable All' on combat start and end
+
 ### v1.0.9 - 08-07-2022
 Something went wrong with the previous update for Forge users. This should be fixed now.
 

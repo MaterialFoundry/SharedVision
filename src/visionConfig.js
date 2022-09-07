@@ -1,5 +1,5 @@
 import {moduleName} from "../sharedvision.js";
-import {initializeSources, compatibleCore} from "./misc.js";
+import {initializeSources} from "./misc.js";
 import {emitSharedVision} from "./socket.js";
 
 export class visionConfig extends FormApplication {
@@ -14,7 +14,7 @@ export class visionConfig extends FormApplication {
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            id: "sharedVisionConfig",
+            id: "sharedVision_visionConfig",
             title: `Shared Vision: Vision Config`,
             template: "./modules/SharedVision/templates/visionConfig.html",
             classes: ["sheet"]
@@ -38,21 +38,27 @@ export class visionConfig extends FormApplication {
             settings = Object.values(settings);
         }
         
-        const users = compatibleCore("0.8.5") ? game.users.contents : game.users.entities;
+        const users = game.users.contents;
         let iteration = 0;
         for (let user of users){
-            if (user.isGM) continue;
-            let enable = false;
+            //if (user.isGM) continue;
+            let token = false;
+            let vision = false;
+            let fog = false;
             if (settings != undefined && settings.length != undefined) 
             for (let setting of settings) 
                 if (user.id == setting.id) {
-                    enable = setting.enable;
+                    token = setting.token;
+                    vision = setting.vision;
+                    fog = setting.fog;
                     break;
                 }
             this.userSettings.push({
                 name: user.name,
                 id: user.id,
-                enable,
+                token,
+                vision,
+                fog,
                 iteration
             })
             iteration++;
@@ -75,10 +81,14 @@ export class visionConfig extends FormApplication {
         await this.actor.setFlag('SharedVision','hidden',formData.sharedVisionHiddenButton);
         let newSettings = [];
 
-        for (let user of this.userSettings) 
-            if (formData?.[`sharedVision-${user.id}`] === true || formData?.[`sharedVision-${user.id}`] === false)
-                newSettings.push({id: user.id, enable: formData?.[`sharedVision-${user.id}`]});
-        
+        for (let user of this.userSettings) {
+            newSettings.push({
+                id: user.id, 
+                token: formData?.[`token-${user.id}`] === true,
+                vision: formData?.[`vision-${user.id}`] === true,
+                fog: formData?.[`fog-${user.id}`] === true
+            });
+        }
           
         await this.actor.setFlag('SharedVision','userSetting',newSettings);
         initializeSources();
