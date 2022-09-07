@@ -1,4 +1,7 @@
 # Changelog
+### v1.1.1 - 07-09-2022
+-Fixed error when libWrapper was enabled in v10
+
 ### v1.1.0 - 06-09-2022
 -Made compatible with Foundry v10
 -Added options to share the token location and fog exploration of tokens, without sharing their vision. Can be configured in the Vision Config for actors, or in the module settings for ownership/disposition.

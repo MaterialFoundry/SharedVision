@@ -75,7 +75,7 @@ function onReady() {
     
     if(game.modules.get('lib-wrapper')?.active) {
         libWrapper.register("SharedVision", "Token.prototype._isVisionSource", isVisionSourceOverride, "OVERRIDE");
-        libWrapper.register("SharedVision", "ForegroundLayer.prototype.updateOcclusion", updateOcclusionOverride, "OVERRIDE");
+        if (!compatibleCore('10.0')) libWrapper.register("SharedVision", "ForegroundLayer.prototype.updateOcclusion", updateOcclusionOverride, "OVERRIDE");
     }
         
     else {
