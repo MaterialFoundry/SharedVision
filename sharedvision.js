@@ -83,7 +83,7 @@ function onReady() {
         if (!compatibleCore('10.0')) ForegroundLayer.prototype.updateOcclusion = updateOcclusionOverride;
     }
 
-    initializeSources();
+    if (!game.user.isGM) initializeSources();
 }
 
 let currentlyUpdatingToken;
@@ -165,4 +165,4 @@ function updateNotification(){
       d.render(true);
     }
     */
-  }
+}

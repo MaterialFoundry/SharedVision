@@ -105,7 +105,7 @@ export function getPermission(entity,user,permissionLevel) {
 export function isSharedVision(token) {
   if (game.settings.get(moduleName,'disableAll')) return false;
   let sharedVision = false;
-  if (token.actor != null) {
+  if (game.user.isGM == false && token.actor != null) {
     if (compatibleCore('10.0') ? token.document.hidden : token.data.hidden) {
         if ( (midiQOL && getPermission(token.actor, game.user, "OWNER")) == false && token.actor.getFlag("SharedVision","hidden") == false) return false;
     }
@@ -154,8 +154,7 @@ export function getOverride(type,token) {
 }
 
 export function revealTokenFog(token) {
-  if (game.settings.get(moduleName,'disableAll')) return false;
-  if (token == undefined) return;
+  if (game.settings.get(moduleName,'disableAll') || token == undefined || game.user.isGM) return false;
   const actor = game.actors.get(compatibleCore('10.0') ? token.actor.id : token.data.actorId);
   const userSetting = actor.getFlag('SharedVision','userSetting')?.find(u => u.id == game.userId);
   if (userSetting?.vision || getOverride('vision',token) || (userSetting?.fog != true && !getOverride('fog',token))) return;

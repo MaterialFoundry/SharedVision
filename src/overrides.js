@@ -3,10 +3,8 @@ import {getPermission, isSharedVision} from "./misc.js";
 
 let old_isVisionSource = Token.prototype._isVisionSource;
 
-export function isVisionSourceOverride() {
-    let result;
-    if (midiQOL) result = isVisionSourceOverride_MidiQOLFix.call(this);
-    else result = old_isVisionSource.call(this);
+export function isVisionSourceOverride(wrapped) {
+    let result = old_isVisionSource.call(this);
     if (result) return true;
     return isSharedVision(this);
 }

@@ -1,4 +1,8 @@
 # Changelog
+### v1.1.2 - 01-10-2022
+-Previous addition (in v1.1.0) to allow vision sharing for the GM resulted in some issues (see GitHub issue #26), so this has been removed. Will be added again when a solution is found
+-Fixed MidiQOL compatibility
+
 ### v1.1.1 - 07-09-2022
 -Fixed error when libWrapper was enabled in v10
 

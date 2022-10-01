@@ -69,7 +69,7 @@ export function drawNewToken(token) {
 }
 
 export function moveToken(token) {
-    if (token == undefined) return;
+    if (token == undefined || game.user.isGM) return;
     const actor = game.actors.get(compatibleCore('10.0') ? token.actor.id : token.data.actorId);
     const userSetting = actor.getFlag('SharedVision','userSetting')?.find(u => u.id == game.userId);
     const shareHidden = actor.getFlag('SharedVision','hidden');
@@ -91,8 +91,9 @@ export function moveToken(token) {
 }
 
 export function updateToken(token) {
-    if (token == undefined) return;
-    const actor = game.actors.get(compatibleCore('10.0') ? token.actor.id : token.data.actorId);
+    if (token == undefined || game.user.isGM) return;
+    const actor = game.actors.get(compatibleCore('10.0') ? token.actor?.id : token.data?.actorId);
+    if (actor == undefined) return;
     const userSetting = actor.getFlag('SharedVision','userSetting')?.find(u => u.id == game.userId);
     const shareHidden = actor.getFlag('SharedVision','hidden');
     const tokenId = compatibleCore('10.0') ? token.document._id : token.id;

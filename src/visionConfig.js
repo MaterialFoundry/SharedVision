@@ -41,7 +41,7 @@ export class visionConfig extends FormApplication {
         const users = game.users.contents;
         let iteration = 0;
         for (let user of users){
-            //if (user.isGM) continue;
+            if (user.isGM) continue;
             let token = false;
             let vision = false;
             let fog = false;
