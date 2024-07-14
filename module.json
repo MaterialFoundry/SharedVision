@@ -4,10 +4,13 @@
     "title": "Shared Vision",
     "description": "Shared Vision provides an easy way to toggle vision sharing between multiple tokens",
     "version": "1.1.2",
-    "author": "CDeenen",
     "authors": [
         {
             "name": "CDeenen"
+        },
+        {
+            "name": "muhahahahe",
+            "discord": "muhahahahe"
         }
     ],
     "esmodules": [
@@ -21,7 +24,8 @@
     "compatibleCoreVersion": "10",
     "compatibility": {
         "minimum": "9",
-        "verified": "10"
+        "verified": "12",
+        "maximum" : "12"
     },
     "languages": [
         {
