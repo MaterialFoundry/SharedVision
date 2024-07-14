@@ -13,7 +13,7 @@ export class visionConfig extends FormApplication {
      * Default Options for this FormApplication
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "sharedVision_visionConfig",
             title: `Shared Vision: Vision Config`,
             template: "./modules/SharedVision/templates/visionConfig.html",
