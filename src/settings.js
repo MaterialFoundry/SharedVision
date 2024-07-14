@@ -289,9 +289,9 @@ export class configMenu extends FormApplication {
     ];
 
     const dispositions = [
-      {id: 'friendly', name: game.i18n.localize("SharedVision.Conf.Disposition.Friendly"), permissions: getOverrideDispositions('friendly')},
-      {id: 'neutral', name: game.i18n.localize("SharedVision.Conf.Disposition.Neutral"), permissions: getOverrideDispositions('neutral')},
-      {id: 'hostile', name: game.i18n.localize("SharedVision.Conf.Disposition.Hostile"), permissions: getOverrideDispositions('hostile')}
+      {id: 'friendly', name: game.i18n.localize(compatibleCore('11.0') ? "TOKEN.DISPOSITION.FRIENDLY" : "TOKEN.FRIENDLY"), permissions: getOverrideDispositions('friendly')},
+      {id: 'neutral', name: game.i18n.localize(compatibleCore('11.0') ? "TOKEN.DISPOSITION.NEUTRAL" : "TOKEN.NEUTRAL"), permissions: getOverrideDispositions('neutral')},
+      {id: 'hostile', name: game.i18n.localize(compatibleCore('11.0') ? "TOKEN.DISPOSITION.HOSTILE" : "TOKEN.HOSTILE"), permissions: getOverrideDispositions('hostile')}
     ];
 
     return {
