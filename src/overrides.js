@@ -19,7 +19,7 @@ function isVisionSourceOverride_MidiQOLFix() {
     const isGM = game.user.isGM;
 
     // TP insert
-    if (this.data.hidden && !(isGM || getPermission(this.actor,game.user, "OWNER")))
+    if (this.data.hidden && !(isGM || getPermission(this.actor, "OWNER")))
         return false;
     
     // Always display controlled tokens which have vision

@@ -98,7 +98,7 @@ export async function initializeSources(updateSource = false){
   
 }
 
-export function getPermission(entity,user,permissionLevel) {
+export function getPermission(entity, permissionLevel) {
   return entity?.testUserPermission(game.user, permissionLevel);
 }
 
