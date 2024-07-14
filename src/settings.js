@@ -67,75 +67,75 @@ export const registerSettings = function() {
   //Remove all settings below this in next version
   /////////////////////////////////////////////////
 
-  game.settings.register(moduleName,'none', {
-    name: "SharedVision.Sett.None.Name",
-    hint: "SharedVision.Sett.None.Hint",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-    onChange: x => initializeSources()
-  });
+  // game.settings.register(moduleName,'none', {
+  //   name: "SharedVision.Sett.None.Name",
+  //   hint: "SharedVision.Sett.None.Hint",
+  //   scope: "world",
+  //   config: false,
+  //   default: false,
+  //   type: Boolean,
+  //   onChange: x => initializeSources()
+  // });
 
-  game.settings.register(moduleName,'limited', {
-    name: "SharedVision.Sett.Limited.Name",
-    hint: "SharedVision.Sett.Limited.Hint",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-    onChange: x => initializeSources()
-  });
+  // game.settings.register(moduleName,'limited', {
+  //   name: "SharedVision.Sett.Limited.Name",
+  //   hint: "SharedVision.Sett.Limited.Hint",
+  //   scope: "world",
+  //   config: false,
+  //   default: false,
+  //   type: Boolean,
+  //   onChange: x => initializeSources()
+  // });
 
-  game.settings.register(moduleName,'observer', {
-    name: "SharedVision.Sett.Observer.Name",
-    hint: "SharedVision.Sett.Observer.Hint",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-    onChange: x => initializeSources()
-  });
+  // game.settings.register(moduleName,'observer', {
+  //   name: "SharedVision.Sett.Observer.Name",
+  //   hint: "SharedVision.Sett.Observer.Hint",
+  //   scope: "world",
+  //   config: false,
+  //   default: false,
+  //   type: Boolean,
+  //   onChange: x => initializeSources()
+  // });
 
-  game.settings.register(moduleName,'owner', {
-    name: "SharedVision.Sett.Owner.Name",
-    hint: "SharedVision.Sett.Owner.Hint",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-    onChange: x => initializeSources()
-  });
+  // game.settings.register(moduleName,'owner', {
+  //   name: "SharedVision.Sett.Owner.Name",
+  //   hint: "SharedVision.Sett.Owner.Hint",
+  //   scope: "world",
+  //   config: false,
+  //   default: false,
+  //   type: Boolean,
+  //   onChange: x => initializeSources()
+  // });
 
-  game.settings.register(moduleName,'friendly', {
-    name: "SharedVision.Sett.Friendly.Name",
-    hint: "SharedVision.Sett.Friendly.Hint",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-    onChange: x => initializeSources()
-  });
+  // game.settings.register(moduleName,'friendly', {
+  //   name: "SharedVision.Sett.Friendly.Name",
+  //   hint: "SharedVision.Sett.Friendly.Hint",
+  //   scope: "world",
+  //   config: false,
+  //   default: false,
+  //   type: Boolean,
+  //   onChange: x => initializeSources()
+  // });
 
-  game.settings.register(moduleName,'neutral', {
-    name: "SharedVision.Sett.Neutral.Name",
-    hint: "SharedVision.Sett.Neutral.Hint",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-    onChange: x => initializeSources()
-  });
+  // game.settings.register(moduleName,'neutral', {
+  //   name: "SharedVision.Sett.Neutral.Name",
+  //   hint: "SharedVision.Sett.Neutral.Hint",
+  //   scope: "world",
+  //   config: false,
+  //   default: false,
+  //   type: Boolean,
+  //   onChange: x => initializeSources()
+  // });
 
-  game.settings.register(moduleName,'hostile', {
-    name: "SharedVision.Sett.Hostile.Name",
-    hint: "SharedVision.Sett.Hostile.Hint",
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean,
-    onChange: x => initializeSources()
-  });
+  // game.settings.register(moduleName,'hostile', {
+  //   name: "SharedVision.Sett.Hostile.Name",
+  //   hint: "SharedVision.Sett.Hostile.Hint",
+  //   scope: "world",
+  //   config: false,
+  //   default: false,
+  //   type: Boolean,
+  //   onChange: x => initializeSources()
+  // });
 }
 
 export function migrateSettings() {
@@ -189,7 +189,7 @@ export class helpMenu extends FormApplication {
    * Default Options for this FormApplication
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       id: "sharedVision_helpMenu",
       title: "Shared Vision: "+game.i18n.localize("SharedVision.Sett.Help"),
       template: "./modules/SharedVision/templates/helpMenu.html",
@@ -248,7 +248,7 @@ export class configMenu extends FormApplication {
    * Default Options for this FormApplication
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       id: "sharedVision_config",
       title: "Shared Vision: "+game.i18n.localize("SharedVision.Conf.Title"),
       template: "./modules/SharedVision/templates/config.html",
@@ -289,9 +289,9 @@ export class configMenu extends FormApplication {
     ];
 
     const dispositions = [
-      {id: 'friendly', name: game.i18n.localize("TOKEN.FRIENDLY"), permissions: getOverrideDispositions('friendly')},
-      {id: 'neutral', name: game.i18n.localize("TOKEN.NEUTRAL"), permissions: getOverrideDispositions('neutral')},
-      {id: 'hostile', name: game.i18n.localize("TOKEN.HOSTILE"), permissions: getOverrideDispositions('hostile')}
+      {id: 'friendly', name: game.i18n.localize("SharedVision.Conf.Disposition.Friendly"), permissions: getOverrideDispositions('friendly')},
+      {id: 'neutral', name: game.i18n.localize("SharedVision.Conf.Disposition.Neutral"), permissions: getOverrideDispositions('neutral')},
+      {id: 'hostile', name: game.i18n.localize("SharedVision.Conf.Disposition.Hostile"), permissions: getOverrideDispositions('hostile')}
     ];
 
     return {
