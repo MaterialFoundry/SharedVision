@@ -31,9 +31,9 @@ function onInit(){
     socketInit();
     
     // Add Vision Permission sheet to ActorDirectory context options
-    const ActorDirectory__getEntryContextOptions = ActorDirectory.prototype._getEntryContextOptions;
-    ActorDirectory.prototype._getEntryContextOptions = function () {
-        return ActorDirectory__getEntryContextOptions.call(this).concat([
+    const ActorDirectory__getSVEntryContextOptions = ActorDirectory.prototype._getSVEntryContextOptions;
+    ActorDirectory.prototype._getSVEntryContextOptions = function () {
+        return ActorDirectory__getSVEntryContextOptions.call(this).concat([
             {
                 name: "Shared Vision",
                 icon: '<i class="fas fa-eye"></i>',
