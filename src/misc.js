@@ -123,6 +123,7 @@ export function getPermission(entity, permissionLevel) {
 }
 
 export function isSharedVision(token) {
+    if (compatibleCore("12.0") && game.user.isGM && canvas.tokens.controlled.length == 0) return false;
     if (game.settings.get(moduleName, "disableAll")) return false;
     let sharedVision = false;
     if (game.user.isGM == false && token.actor != null) {
@@ -161,10 +162,10 @@ export function isSharedVision(token) {
         }
 
         if (sharedVision == false) {
-            //let permission;
-            //if (compatibleCore('10.0')) permission = token.document.permission;
-            //else permission = token.actor.data.permission?.[game.userId] ? token.actor.data.permission?.[game.userId] : token.actor.data.permission.default;
-            //const disposition = compatibleCore('10.0') ? token.document.disposition : token.data.disposition;
+            let permission;
+            if (compatibleCore('10.0')) permission = token.document.permission;
+            else permission = token.actor.data.permission?.[game.userId] ? token.actor.data.permission?.[game.userId] : token.actor.data.permission.default;
+            const disposition = compatibleCore('10.0') ? token.document.disposition : token.data.disposition;
             sharedVision = getOverride("vision", token);
         }
         return sharedVision;
