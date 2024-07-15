@@ -107,7 +107,7 @@ export function isSharedVision(token) {
   let sharedVision = false;
   if (game.user.isGM == false && token.actor != null) {
     if (compatibleCore('10.0') ? token.document.hidden : token.data.hidden) {
-        if ( (midiQOL && getPermission(token.actor, game.user, "OWNER")) == false && token.actor.getFlag("SharedVision","hidden") == false) return false;
+        if ( (midiQOL && getPermission(token.actor, "OWNER")) == false && token.actor.getFlag("SharedVision","hidden") == false) return false;
     }
 
     if (game.settings.get(moduleName,'enable')) {
