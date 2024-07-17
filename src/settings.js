@@ -367,7 +367,7 @@ export class configMenu extends FormApplication {
             dispositions.push({
                 id: "secret",
                 name: game.i18n.localize("TOKEN.DISPOSITION.SECRET"),
-                permissions: getOverrideDispositions("hostile"),
+                permissions: getOverrideDispositions("secret"),
             });
         }
 

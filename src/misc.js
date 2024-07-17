@@ -173,7 +173,7 @@ export function isSharedVision(token) {
 }
 
 const permissionLevels = ["none", "limited", "observer", "owner"];
-const dispositionTypes = ["hostile", "neutral", "friendly"];
+const dispositionTypes = ["hostile", "neutral", "friendly", "secret"];
 
 export function getOverride(type, token) {
     const p = token.actor.permission;
