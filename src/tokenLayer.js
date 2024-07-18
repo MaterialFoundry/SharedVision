@@ -136,7 +136,7 @@ export function updateToken(token) {
     const shareHidden = actor.getFlag("SharedVision", "hidden");
     const tokenId = compatibleCore("10.0") ? token.document._id : token.id;
 
-    console.log('token',token, actor, userSetting)
+    //console.log('token',token, actor, userSetting)
 
     const storage = tokenStorage.find((s) => s.tokenId == tokenId);
     if (
