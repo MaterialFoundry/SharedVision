@@ -1,43 +1,57 @@
-<form autocomplete="off" onsubmit="event.preventDefault()" style="max-width:350px">
+<form
+    autocomplete="off"
+    onsubmit="event.preventDefault()"
+    style="max-width: 350px"
+>
     <div class="form-group">
-      <label>{{localize "SharedVision.VisionConf.Global.Label"}}</label>
-      <input id="sharedVisionButton" type="checkbox" name="sharedVisionButton" data-dtype="Boolean" {{#if btnEnable}}checked{{/if}}>
+        <label>{{localize "SharedVision.VisionConf.Global.Label"}}</label>
+        <input id="sharedVisionButton" type="checkbox" name="sharedVisionButton"
+        data-dtype="Boolean" {{#if btnEnable}}checked{{/if}}>
     </div>
     <p class="notes">{{localize "SharedVision.VisionConf.Global.Note"}}</p>
 
     <div class="form-group">
-      <label>{{localize "SharedVision.VisionConf.Hidden.Label"}}</label>
-      <input id="sharedVisionHiddenButton" type="checkbox" name="sharedVisionHiddenButton" data-dtype="Boolean" {{#if hidden}}checked{{/if}}>
+        <label>{{localize "SharedVision.VisionConf.Hidden.Label"}}</label>
+        <input id="sharedVisionHiddenButton" type="checkbox"
+        name="sharedVisionHiddenButton" data-dtype="Boolean" {{#if
+        hidden}}checked{{/if}}>
     </div>
     <p class="notes">{{localize "SharedVision.VisionConf.Hidden.Note"}}</p>
 
-    <hr>
+    <hr />
     <h3>{{localize "SharedVision.VisionConf.User.Label"}}</h3>
     <p class="notes">{{localize "SharedVision.VisionConf.User.Note"}}</p>
 
     <table>
-      <tr>
-        <th class="sharedVision_table_name">{{localize "SharedVision.VisionConf.UserName"}}</th>
-        <th>{{localize "SharedVision.VisionConf.Vision"}}</th>
-        <th>{{localize "SharedVision.VisionConf.Token"}}</th>
-        <th>{{localize "SharedVision.VisionConf.Fog"}}</th>
-      </tr>
-    
+        <tr>
+            <th class="sharedVision_table_name">
+                {{localize "SharedVision.VisionConf.UserName"}}
+            </th>
+            <th>{{localize "SharedVision.VisionConf.Vision"}}</th>
+            <th>{{localize "SharedVision.VisionConf.Token"}}</th>
+            <th>{{localize "SharedVision.VisionConf.Fog"}}</th>
+        </tr>
 
-    {{#each users as |u|}}
-      <tr>
-        <td>{{u.name}}</td>
-        <td class="sharedVision_table_cb"><input type="checkbox" name="vision-{{u.id}}" {{#if u.vision}}checked{{/if}}></td>
-        <td class="sharedVision_table_cb"><input type="checkbox" name="token-{{u.id}}" {{#if u.token}}checked{{/if}}></td>
-        <td class="sharedVision_table_cb"><input type="checkbox" name="fog-{{u.id}}" {{#if u.fog}}checked{{/if}}></td>
-      </tr>
-    {{/each}}
+        {{#each users as |u|}}
+        <tr>
+            <td>{{u.name}}</td>
+            <td class="sharedVision_table_cb">
+                <input type="checkbox" name="vision-{{u.id}}" {{#if
+                u.vision}}checked{{/if}}>
+            </td>
+            <td class="sharedVision_table_cb">
+                <input type="checkbox" name="token-{{u.id}}" {{#if
+                u.token}}checked{{/if}}>
+            </td>
+            <td class="sharedVision_table_cb">
+                <input type="checkbox" name="fog-{{u.id}}" {{#if
+                u.fog}}checked{{/if}}>
+            </td>
+        </tr>
+        {{/each}}
     </table>
-
-    
 
     <button type="submit" name="submit">
         <i></i>{{localize "SharedVision.VisionConf.Save"}}
     </button>
-
 </form>
