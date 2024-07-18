@@ -208,7 +208,9 @@ export function revealTokenFog(token) {
     )
         return;
 
-    if (compatibleCore("10.0")) {
+    if (compatibleCore("12.0")) {
+        //TODO: calculate fog v12
+    } else if (compatibleCore("10.0")) {
         token.vision.initialize({
             x: token.document.x,
             y: token.document.y,
@@ -228,10 +230,10 @@ export function revealTokenFog(token) {
             ),
         });
         let visionSource = token.vision;
-        if (visionSource.los == undefined)
-            visionSource.los = { isContrained: true };
-        //visionSource.active = true;
         canvas.effects.visionSources.set(token.sourceId, visionSource);
+        if (visionSource.los == undefined)
+            visionSource.los = { isConstrained: true };
+        //visionSource.active = true;
 
         canvas.effects.visibility.refresh({ forceUpdateFog: true });
         canvas.effects.visionSources.delete(token.sourceId);
