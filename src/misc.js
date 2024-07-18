@@ -230,7 +230,7 @@ export function revealTokenFog(token) {
         let visionSource = token.vision;
         if (visionSource.los == undefined)
             visionSource.los = { isContrained: true };
-        visionSource.active = true;
+        //visionSource.active = true;
         canvas.effects.visionSources.set(token.sourceId, visionSource);
 
         canvas.effects.visibility.refresh({ forceUpdateFog: true });

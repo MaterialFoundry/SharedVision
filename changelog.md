@@ -1,4 +1,15 @@
 # Changelog
+### v1.2.0 - 18-07-2024
+Update is thanks to @muhahahahe
+
+-Made compatible with Foundry v12
+-Minor code cleanup
+-Changed prototype name to remove conflict with other modules
+-Removed 'author' property from module.json
+-Fixed translation issue for actor dispositions in v11+
+-Added 'secret' disposition
+-Fixed issue in v12 where deselecting tokens would not stop sharing vision
+
 ### v1.1.2 - 01-10-2022
 -Previous addition (in v1.1.0) to allow vision sharing for the GM resulted in some issues (see GitHub issue #26), so this has been removed. Will be added again when a solution is found
 -Fixed MidiQOL compatibility

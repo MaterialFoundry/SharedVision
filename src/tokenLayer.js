@@ -129,11 +129,14 @@ export function updateToken(token) {
         compatibleCore("10.0") ? token.actor?.id : token.data?.actorId,
     );
     if (actor == undefined) return;
+    
     const userSetting = actor
         .getFlag("SharedVision", "userSetting")
         ?.find((u) => u.id == game.userId);
     const shareHidden = actor.getFlag("SharedVision", "hidden");
     const tokenId = compatibleCore("10.0") ? token.document._id : token.id;
+
+    console.log('token',token, actor, userSetting)
 
     const storage = tokenStorage.find((s) => s.tokenId == tokenId);
     if (
