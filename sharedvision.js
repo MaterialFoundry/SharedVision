@@ -77,9 +77,14 @@ function onInit() {
                     return game.user.isGM;
                 },
                 callback: (li) => {
-                    const actor = this.constructor.collection.get(
-                        li.data("documentId"),
-                    );
+                    let actor;
+
+                    if(li.hasAttribute && li.hasAttribute('data-entry-id')) {
+                        actor = game.actors.get(li.getAttribute('data-entry-id'));
+                    } else {
+                        actor = this.constructor.collection.get(li.data("documentId"));
+                    }
+
                     if (actor) {
                         let dialog = new visionConfig();
                         dialog.setActor(actor);
