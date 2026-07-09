@@ -207,7 +207,7 @@ export class helpMenu extends FormApplication {
                 "Shared Vision: " +
                 game.i18n.localize("SharedVision.Sett.Help"),
             template: "./modules/SharedVision/templates/helpMenu.html",
-            width: "500px",
+            width: 500,
         });
     }
 
@@ -264,7 +264,7 @@ export class configMenu extends FormApplication {
                 "Shared Vision: " +
                 game.i18n.localize("SharedVision.Conf.Title"),
             template: "./modules/SharedVision/templates/config.html",
-            width: "500px",
+            width: 500,
         });
     }
 
