@@ -78,20 +78,12 @@
             <td>{{c.name}}</td>
             <td class="sharedVision_table_select">
                 <select name="combatSelect-start-{{c.id}}">
-                    {{#select c.start}}
-                    <option value="none">No Change</option>
-                    <option value="enable">Enable</option>
-                    <option value="disable">Disable</option>
-                    {{/select}}
+                    {{selectOptions (object none="No Change" enable="Enable" disable="Disable") selected=c.start}}
                 </select>
             </td>
             <td class="sharedVision_table_select">
                 <select name="combatSelect-end-{{c.id}}">
-                    {{#select c.end}}
-                    <option value="none">No Change</option>
-                    <option value="enable">Enable</option>
-                    <option value="disable">Disable</option>
-                    {{/select}}
+                    {{selectOptions (object none="No Change" enable="Enable" disable="Disable") selected=c.end}}
                 </select>
             </td>
         </tr>
