@@ -86,7 +86,11 @@ export async function disableAll(en) {
 }
 
 export async function initializeSources(updateSource = false) {
-    canvas.perception.initialize({
+  for (const token of canvas.tokens.placeables) {
+      token.initializeVisionSource?.();
+  }
+
+  canvas.perception.initialize({
         sight: { initialize: true, refresh: true },
         lighting: { refresh: true },
         sounds: { refresh: true },
