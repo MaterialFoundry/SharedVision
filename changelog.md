@@ -1,4 +1,6 @@
 # Changelog
+### v1.2.2 - 15-09-2026
+- Fixed compatibility issue with Vision5e [#43](https://github.com/MaterialFoundry/SharedVision/issues/43)
 ### v1.2.1 - 14-08-2026
 - Added compatibility for v14 and below [#46](https://github.com/MaterialFoundry/SharedVision/issues/46)
 - Fixed issue where changes are not preserved on load, or updated immediately after applying [#40](https://github.com/MaterialFoundry/SharedVision/issues/40)

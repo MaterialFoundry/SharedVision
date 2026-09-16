@@ -11,6 +11,10 @@
         {
             "name": "muhahahahe",
             "discord": "muhahahahe"
+        },
+        {
+            "name": "lucasteng123",
+            "discord": "honested"
         }
     ],
     "esmodules": [
@@ -23,7 +27,7 @@
     "minimumCoreVersion": "9.0",
     "compatibleCoreVersion": "14",
     "compatibility": {
-        "minimum": "9",
+        "minimum": "13",
         "verified": "14",
         "maximum" : "14"
     },
