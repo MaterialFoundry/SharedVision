@@ -1,12 +1,22 @@
 import { moduleName, midiQOL } from "../sharedvision.js";
 import { getPermission, isSharedVision } from "./misc.js";
 
-let old_isVisionSource = Token.prototype._isVisionSource;
-
-export function isVisionSourceOverride(wrapped) {
-    let result = old_isVisionSource.call(this);
+export function isVisionSourceOverride(wrapped, ...args) {
+    const result = typeof wrapped === "function" ? wrapped(...args) : false;
     if (result) return true;
-    return isSharedVision(this);
+    return isSharedVision(this) === true;
+}
+
+let patched = false;
+
+export function patchIsVisionSource() {
+    if (patched) return;
+    patched = true;
+    const proto = CONFIG.Token.objectClass.prototype;
+    const previous = proto._isVisionSource;
+    proto._isVisionSource = function (...args) {
+        return isVisionSourceOverride.call(this, previous.bind(this), ...args);
+    };
 }
 
 //Copied from Midi QOL's patching.js

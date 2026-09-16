@@ -15,6 +15,7 @@ import { registerSettings, migrateSettings } from "./src/settings.js";
 import { socketInit, emitSharedVision, updateSight } from "./src/socket.js";
 import {
     isVisionSourceOverride,
+    patchIsVisionSource,
     updateOcclusionOverride,
 } from "./src/overrides.js";
 import { updateToken } from "./src/tokenLayer.js";
@@ -127,9 +128,9 @@ function onReady() {
     if (game.modules.get("lib-wrapper")?.active) {
         libWrapper.register(
             "SharedVision",
-            "Token.prototype._isVisionSource",
+            "CONFIG.Token.objectClass.prototype._isVisionSource",
             isVisionSourceOverride,
-            "OVERRIDE",
+            "WRAPPER",
         );
         if (!compatibleCore("10.0"))
             libWrapper.register(
@@ -139,7 +140,7 @@ function onReady() {
                 "OVERRIDE",
             );
     } else {
-        Token.prototype._isVisionSource = isVisionSourceOverride;
+        patchIsVisionSource();
         if (!compatibleCore("10.0"))
             ForegroundLayer.prototype.updateOcclusion = updateOcclusionOverride;
     }
@@ -174,7 +175,7 @@ function onSightRefresh(data) {
 
 async function onCanvasReady() {
     if (midiQOL && game.modules.get("lib-wrapper")?.active == false) {
-        Token.prototype._isVisionSource = isVisionSourceOverride;
+        patchIsVisionSource();
     }
 
     const enable = game.settings.get(moduleName, "enable");
